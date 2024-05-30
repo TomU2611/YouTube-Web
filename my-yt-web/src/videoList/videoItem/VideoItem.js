@@ -1,4 +1,4 @@
-function VideoItem({ title, author, image, views, date, onVideoSelect, video }) {
+function VideoItem({ title, author, views, date}) {
     return (
         <div >
             <h2>{title}</h2>
@@ -8,3 +8,4 @@ function VideoItem({ title, author, image, views, date, onVideoSelect, video }) 
         </div>
     );
 }
+export default VideoItem;

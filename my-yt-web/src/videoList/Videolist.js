@@ -3,7 +3,6 @@ import videos from "../data/defaultVideos.json";
 import { useState } from 'react';
 
 function Videolist() {
-    
     const [videosList, setVideosList] = useState(videos);
     console.log(videosList)
     var i = 1
@@ -15,9 +14,11 @@ function Videolist() {
         <div className="Videolist">
            { 
                 videosList.map((video) =>
-                    <video {...video} />
+                    <VideoItem {...video} />
                 )
             }
         </div>
       );
 }
+
+export default VideoList;
