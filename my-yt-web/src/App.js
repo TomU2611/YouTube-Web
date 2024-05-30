@@ -1,5 +1,5 @@
 import './App.css';
-import VideoList from './components/VideoList';
+import VideoList from './videoList/VideoList';
 
 function App() {
   return (
