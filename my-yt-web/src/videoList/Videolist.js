@@ -1,5 +1,5 @@
 import VideoItem from "./videoItem/VideoItem";
-import videos from "../data/videos";
+import videos from "../data/defaultVideos.json";
 import { useState } from 'react';
 
 function Videolist() {
