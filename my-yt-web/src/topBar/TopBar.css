@@ -1,0 +1,60 @@
+/* src/topBar/TopBar.css */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 70px;
+  background-color: #ffffff; /* Background color is white */
+  color: #000000; /* Text color is black */
+  border-radius: 15px; /* Add rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for a better look */
+}
+
+
+.logo {
+  height: 30px;
+ 
+}
+
+.topbar-center {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 500px; /* Adjust the width as needed */
+  padding: 8px 15px; /* Adjust padding for better appearance */
+  border: 1px solid #ccc;
+  border-radius: 20px 0 0 20px; /* Rounded corners for left side */
+}
+
+.search-button {
+  padding: 8px 15px; /* Adjust padding for better appearance */
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 0 20px 20px 0; /* Rounded corners for right side */
+  cursor: pointer;
+}
+
+.search-button i {
+  margin-right: 5px; /* Add spacing between icon and text */
+}
+
+.search-options {
+  display: flex;
+}
+
+.search-option-gray {
+  padding: 5px 10px;
+  background-color: #e0e0e0; /* Gray background color */
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.topbar-right i {
+  margin-left: 20px;
+  cursor: pointer;
+  color: #000000; /* Icon color is black */
+}
