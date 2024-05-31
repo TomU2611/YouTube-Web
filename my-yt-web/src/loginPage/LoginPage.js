@@ -20,18 +20,20 @@ function LoginPage(){
     };
 
     return (
-        <div className="login-form">
-            <h2>Login</h2>
+        <div id='m1'>
+            <h2 id='title'>Sign In</h2>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Username:</label>
-                    <input type="username" value={username} onChange={handleUsernameChange} />
+                
+                <div className="input-group mb-3 sp1"> 
+                    <span className="input-group-text sp" >Username</span>
+                    <input type="text" className="form-control sp2" aria-label="Username" aria-describedby="basic-addon1" value={username} onChange={handleUsernameChange}/>
                 </div>
-                <div>
-                    <label >Password:</label>
-                    <input type="password" value={password} onChange={handlePasswordChange} />
+                <div className="input-group mb-3 sp1"> 
+                    <span className="input-group-text sp" >Password</span>
+                    <input type="text" className="form-control sp2" aria-label="Password" aria-describedby="basic-addon1" value={password} onChange={handlePasswordChange}/>
                 </div>
-                <button className="btn btn-danger" type="button">Login</button>
+                
+                <button id='but' className="btn btn-danger" type="button">Login</button>
             </form>
         </div>
     );
