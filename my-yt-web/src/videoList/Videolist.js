@@ -1,6 +1,7 @@
 import VideoItem from "./videoItem/VideoItem";
 import videos from "../data/defaultVideos.json";
 import { useState } from 'react';
+import './VideoList.css';
 
 function VideoList() {
     const [videosList, setVideosList] = useState(videos);
@@ -11,7 +12,7 @@ function VideoList() {
     console.log(i)
 
     return (
-        <div className="Videolist">
+        <div className="VideoList">
            { 
                 videosList.map((video) =>
                     <VideoItem {...video} />
