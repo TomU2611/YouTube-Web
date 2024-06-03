@@ -1,7 +1,10 @@
 /* src/topBar/TopBar.css */
+
+/* src/topBar/TopBar.css */
+
 .topbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start; /* Start from the left */
   align-items: center;
   padding: 10px 70px;
   background-color: #ffffff; /* Background color is white */
@@ -10,15 +13,42 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for a better look */
 }
 
+/* Other styles remain the same */
+
+
+.topbar-right {
+  margin-left: auto; /* Pushes the content to the right */
+  height: 30px;
+  float: left;
+  position: relative;
+  right: -1350px; /* Adjust as needed for spacing */
+}
+
+.buttonSign {
+  background-color: #ffffff; /* Blue color */
+  border-color: #ffffff; /* Border color */
+  color: #007bff; /* Text color */
+  border-radius: 20px 20px 20px 20px; /* Rounded corners for right side */
+}
+
+.buttonSign:hover {
+  background-color: lightgrey; /* Darker shade of blue on hover */
+}
+
 
 .logo {
-  height: 30px;
- 
+  height: 70px;
+  float: left;
+  position: relative;
+  left: -170px; /* Adjust as needed for spacing */
+  margin-top: -13px; /* Adjust this value to move the logo higher */
 }
 
 .topbar-center {
   display: flex;
   align-items: center;
+  margin-left: auto; /* Pushes the center content to the right */
+  transform: translateX(50%); /* Moves the content to the center of the page */
 }
 
 .search-input {
@@ -36,25 +66,20 @@
   cursor: pointer;
 }
 
-.search-button i {
-  margin-right: 5px; /* Add spacing between icon and text */
+
+.search-url li {
+  float: left;
+  padding: 5px;
+  list-style-type: none;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transform: translate(-600%, 170%);
 }
 
-.search-options {
-  display: flex;
-}
-
-.search-option-gray {
-  padding: 5px 10px;
-  background-color: #e0e0e0; /* Gray background color */
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  margin-left: 5px;
-  cursor: pointer;
-}
-
-.topbar-right i {
-  margin-left: 20px;
-  cursor: pointer;
-  color: #000000; /* Icon color is black */
+.topbar-right{
+  float: left;
+  position: relative;
+  left: 1430px; /* Adjust as needed for spacing */
+  height: -2px;
 }

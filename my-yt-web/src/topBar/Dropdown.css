@@ -1,18 +1,17 @@
-/* Dropdown.css */
-
 .dropdown {
-  float: left;
-  position: relative;
-  top: 0; /* Adjust as needed */
+  position: absolute;
+  position: fixed;
+  top: -10px; /* Add 'px' unit */
+  left: 30px;
+  padding: 10px;
 }
 
-.dropdown-btn {
-  background-color: hwb(121 16% 48%); /* Gray background color */
-  color: #fff; /* White text color */
-  border-color: #6c757d; /* Gray border color */
+
+.offcanvas-header {
+  background-color: lightgray; /* Header background color */
 }
 
-.dropdown-btn:hover {
-  background-color: #f8f9fa; /* Light gray background color on hover */
-  border-color: #706c7d; /* Gray border color on hover */
+.offcanvas-body {
+  padding: 0.5rem;
 }
+

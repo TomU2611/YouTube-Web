@@ -1,29 +1,54 @@
-import React, { useState } from 'react';
-import './Dropdown.css';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import './Dropdown.css';
 
 const Dropdown = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
-    <div className="dropdown" style={{ float: 'left' }}>
-      <button
-        className="btn btn-secondary dropdown-toggle"
-        type="button"
-        id="dropdownMenuButton"
-        onClick={toggleDropdown}
-      >
-        settings
+    <div className="dropdown">
+      <button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
+        <i className="bi bi-sliders" style={{ fontSize: '2rem', marginLeft: '-35px', padding: '5px'}}></i>
       </button>
-      <div className={`dropdown-menu ${isOpen ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
-        <button className="dropdown-item" type="button">Action</button>
-        <button className="dropdown-item" type="button">Another action</button>
-        <button className="dropdown-item" type="button">Something else here</button>
+
+      <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+        <div className="offcanvas-header">
+          <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div className="offcanvas-body">
+          <ul className="list-group">
+            <li className="list-group-item d-flex justify-content align-items-center">
+              <i className="bi bi-house-door"></i>
+              <span className="w-70 m-2">Home</span>
+            </li>
+            <li className="list-group-item d-flex justify-content align-items-center">
+              <i className="bi bi-film"></i>
+              <span className="w-70 m-2">Shorts</span>
+            </li>
+            <li className="list-group-item d-flex justify-content align-items-center">
+              <i className="bi bi-plus-square"></i>
+              <span className="w-70 m-2">Subscriptions</span>
+            </li>
+            <li className="list-group-item d-flex justify-content align-items-center">
+              <i className="bi bi-youtube"></i>
+              <span className="w-70 m-2">You</span>
+            </li>
+            <li className="list-group-item d-flex justify-content align-items-center">
+              <i className="bi bi-clock-history"></i>
+              <span className="w-70 m-2">History</span>
+            </li>
+            <li className="list-group-item d-flex justify-content align-items-center">
+              <i className="bi bi-music-note-beamed"></i>
+              <span className="w-70 m-2">Music</span>
+            </li>
+            <li className="list-group-item d-flex justify-content align-items-center">
+            <i class="bi bi-plus-circle"></i>
+              <span className="w-70 m-2">Add Video</span>
+            </li>
+            <li className="list-group-item d-flex justify-content align-items-center">
+            <i class="bi bi-cloud-moon"></i>
+              <span className="w-70 m-2">Dark mode</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
