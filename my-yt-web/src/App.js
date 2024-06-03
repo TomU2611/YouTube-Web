@@ -1,31 +1,17 @@
-
-
-// src/App.js
-import React from 'react';
-import TopBar from './topBar/TopBar'; 
-import Dropdown from './topBar/Dropdown'; 
+import React, { useState } from 'react';
+import Home from './homePage/Home'; 
 import './App.css';
-import SideBar from './sideBar/SideBar';
-
-
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(prevDarkMode => !prevDarkMode);
+  };
+
   return (
-    <div className="App">
-
-      
- <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-9-fluid">
-          <TopBar />
-          </div>
-          <div class="col-sm-3-fluid">
-          <SideBar/>
-          <Dropdown/>
-          </div>
-        </div>
-      </div>
-
+    <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
+      <Home darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
     </div>
   );
 }

@@ -1,16 +1,21 @@
-
-/* src/App.css */
-
-.row {
-    margin-left: -30px; /* Reset the default margin */
-    margin-right: -11px; /* Reset the default margin */
-    justify-content: flex-start; /* Align items to the left */
+/* App.css */
+.dark-mode {
+    background-color: #1c1c1c; /* Dark background color */
+    color: #fff; /* Light text color */
   }
   
-  .col-sm-9-fluid,
-  .col-sm-3-fluid {
-    padding-left: 0; /* Remove left padding for the columns */
-    padding-right: 0; /* Remove right padding for the columns */
+  /* TopBar.css */
+  .topbar.dark-mode {
+    background-color: #000; /* Dark background color for TopBar */
   }
   
-
+  /* Dropdown.css */
+  .dropdown.dark-mode {
+    background-color: #000; /* Dark background color for Dropdown */
+  }
+  
+  /* VideoList.css */
+  .VideoList.dark-mode {
+    background-color: #000; /* Dark background color for VideoList */
+  }
+  
