@@ -1,0 +1,85 @@
+/* src/topBar/TopBar.css */
+
+/* src/topBar/TopBar.css */
+
+.topbar {
+  display: flex;
+  justify-content: flex-start; /* Start from the left */
+  align-items: center;
+  padding: 10px 70px;
+  background-color: #ffffff; /* Background color is white */
+  color: #000000; /* Text color is black */
+  border-radius: 15px; /* Add rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for a better look */
+}
+
+/* Other styles remain the same */
+
+
+.topbar-right {
+  margin-left: auto; /* Pushes the content to the right */
+  height: 30px;
+  float: left;
+  position: relative;
+  right: -1350px; /* Adjust as needed for spacing */
+}
+
+.buttonSign {
+  background-color: #ffffff; /* Blue color */
+  border-color: #ffffff; /* Border color */
+  color: #007bff; /* Text color */
+  border-radius: 20px 20px 20px 20px; /* Rounded corners for right side */
+}
+
+.buttonSign:hover {
+  background-color: lightgrey; /* Darker shade of blue on hover */
+}
+
+
+.logo {
+  height: 70px;
+  float: left;
+  position: relative;
+  left: -170px; /* Adjust as needed for spacing */
+  margin-top: -13px; /* Adjust this value to move the logo higher */
+}
+
+.topbar-center {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Pushes the center content to the right */
+  transform: translateX(50%); /* Moves the content to the center of the page */
+}
+
+.search-input {
+  width: 500px; /* Adjust the width as needed */
+  padding: 8px 15px; /* Adjust padding for better appearance */
+  border: 1px solid #ccc;
+  border-radius: 20px 0 0 20px; /* Rounded corners for left side */
+}
+
+.search-button {
+  padding: 8px 15px; /* Adjust padding for better appearance */
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 0 20px 20px 0; /* Rounded corners for right side */
+  cursor: pointer;
+}
+
+
+.search-url li {
+  float: left;
+  padding: 5px;
+  list-style-type: none;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transform: translate(-600%, 170%);
+}
+
+.topbar-right{
+  float: left;
+  position: relative;
+  left: 1430px; /* Adjust as needed for spacing */
+  height: -2px;
+}

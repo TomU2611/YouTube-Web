@@ -1,0 +1,17 @@
+.dropdown {
+  position: absolute;
+  position: fixed;
+  top: -10px; /* Add 'px' unit */
+  left: 30px;
+  padding: 10px;
+}
+
+
+.offcanvas-header {
+  background-color: lightgray; /* Header background color */
+}
+
+.offcanvas-body {
+  padding: 0.5rem;
+}
+
