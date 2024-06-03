@@ -7,7 +7,7 @@ import RegisterPage from './registerPage/RegisterPage';
 function App() {
   return (
     <div className="App">
-      <RegisterPage />
+      <LoginPage />
 
     </div>
   );

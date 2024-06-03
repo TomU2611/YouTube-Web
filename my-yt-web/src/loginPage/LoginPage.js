@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import RegisterPage from '../registerPage/RegisterPage';
-import {Router, Route, Switch, Link  } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LoginPage.css';
 
@@ -25,25 +23,25 @@ function LoginPage(){
    
 
     return (
-        <div id='m1'>
-            <h2 id='title'>Sign In</h2>
-            <form onSubmit={handleSubmit}>
+        <div className="login-container">
+            <div className="youtube-icon"></div>
+            <form className="login-form" onSubmit={handleSubmit}>
                 
-                <div className="input-group mb-3"> 
-                    <span className="input-group-text" >Username</span>
-                    <input type="text" className="form-control" aria-label="Username" aria-describedby="basic-addon1" value={username} onChange={handleUsernameChange}/>
+                <h2>Sign In</h2>
+                <div className="form-group">
+                    <span>Username</span>
+                    <input type="text" value={username} onChange={handleUsernameChange} />
                 </div>
-                <div className="input-group mb-3"> 
-                    <span className="input-group-text" >Password</span>
-                    <input type="text" className="form-control" aria-label="Password" aria-describedby="basic-addon1" value={password} onChange={handlePasswordChange}/>
+                <div className="form-group">
+                    <span>Password</span>
+                    <input type="password" value={password} onChange={handlePasswordChange} />
                 </div>
-
-                <div id='buttons'>
-                    <button className="btn btn-danger" type="button" onClick={handleSubmit}>Login</button>
-                    <button className="btn btn-danger">Register</button>
-                    
+                <div className="form-buttons">
+                    <button type="button" onClick={handleSubmit}>Login</button>
+                    <div to="/register">
+                        <button type="submit">Register</button>
+                    </div>
                 </div>
-                
             </form>
         </div>
     );
