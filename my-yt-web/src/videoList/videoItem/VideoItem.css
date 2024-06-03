@@ -1,0 +1,19 @@
+.VideoItem {
+    text-align: left;
+    direction: ltr;
+}
+.VideoItem img {
+    width: 300px; 
+    border-radius: 10px;
+}
+.VideoItem div {
+    font-size: 27px;
+    color: black;
+    font-weight: bold;
+    display: block;
+}
+.VideoItem smallText {
+    font-size: 15px;
+    color: gray;
+    display: block;
+}

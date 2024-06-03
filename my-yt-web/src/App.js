@@ -1,10 +1,12 @@
 
+
 // src/App.js
 import React from 'react';
 import TopBar from './topBar/TopBar'; 
 import Dropdown from './topBar/Dropdown'; 
 import './App.css';
 import SideBar from './sideBar/SideBar';
+
 
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
           </div>
         </div>
       </div>
+
     </div>
   );
 }

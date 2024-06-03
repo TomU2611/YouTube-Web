@@ -1,0 +1,90 @@
+[
+    {
+        "title": "boat",
+        "author": "Author 1",
+        "timeAgo": "1 hour ago",
+        "views": 1000,
+        "photo": "boat.jpg",
+        "video": "./videos/boat.mp4"
+    },
+    {
+        "title": "buildings",
+        "author": "Author 2",
+        "timeAgo": "2 hour ago",
+        "views": 2000,
+        "photo": "buildings.jpg",
+        "video": "./videos/buildings.mp4"
+    },
+    {
+        "title": "ferris_wheel",
+        "author": "Author 3",
+        "timeAgo": "3 hour ago",
+        "views": 3000,
+        "photo": "ferris_wheel.jpg",
+        "video": "./videos/ferris_wheel.mp4"
+    },
+    {
+        "title": "girl_flowers",
+        "author": "Author 4",
+        "timeAgo": "4 hour ago",
+        "views": 4000,
+        "photo": "girl_flowers.jpg",
+        "video": "./videos/girl_flowers.mp4"
+    },
+    {
+        "title": "hard_rock_cafe",
+        "author": "Author 5",
+        "timeAgo": "5 hour ago",
+        "views": 5000,
+        "photo": "hard_rock_cafe.jpg",
+        "video": "./videos/hard_rock_cafe.mp4"
+    },
+    {
+        "title": "hilton",
+        "author": "Author 6",
+        "timeAgo": "6 hour ago",
+        "views": 6000,
+        "photo": "hilton.jpg",
+        "video": "./videos/hilton.mp4"
+    },
+    {
+        "title": "keyboard",
+        "author": "Author 7",
+        "timeAgo": "7 hour ago",
+        "views": 7000,
+        "photo": "keyboard.jpg",
+        "video": "./videos/keyboard.mp4"
+    },
+    {
+        "title": "kite",
+        "author": "Author 8",
+        "timeAgo": "8 hour ago",
+        "views": 8000,
+        "photo": "kite.jpg",
+        "video": "./videos/kite.mp4"
+    },
+    {
+        "title": "men_sunset",
+        "author": "Author 9",
+        "timeAgo": "9 hour ago",
+        "views": 9000,
+        "photo": "men_sunset.jpg",
+        "video": "./videos/men_sunset.mp4"
+    },
+    {
+        "title": "road",
+        "author": "Author 10",
+        "timeAgo": "10 hour ago",
+        "views": 10000,
+        "photo": "road.jpg",
+        "video": "./videos/road.mp4"
+    },
+    {
+        "title": "women_reading",
+        "author": "Author 11",
+        "timeAgo": "11 hour ago",
+        "views": 11000,
+        "photo": "women_reading.jpg",
+        "video": "./videos/women_reading.mp4"
+    }
+]
