@@ -1,7 +1,5 @@
 /* src/topBar/TopBar.css */
 
-/* src/topBar/TopBar.css */
-
 .topbar {
   display: flex;
   justify-content: flex-start; /* Start from the left */
@@ -11,10 +9,11 @@
   color: #000000; /* Text color is black */
   border-radius: 15px; /* Add rounded corners */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for a better look */
+  position: fixed; /* Make the TopBar fixed */
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure it stays on top of other elements */
 }
-
-/* Other styles remain the same */
-
 
 .topbar-right {
   margin-left: auto; /* Pushes the content to the right */
@@ -35,12 +34,11 @@
   background-color: lightgrey; /* Darker shade of blue on hover */
 }
 
-
 .logo {
   height: 70px;
   float: left;
   position: relative;
-  left: -170px; /* Adjust as needed for spacing */
+  left: -515px; /* Adjust as needed for spacing */
   margin-top: -13px; /* Adjust this value to move the logo higher */
 }
 
@@ -48,7 +46,7 @@
   display: flex;
   align-items: center;
   margin-left: auto; /* Pushes the center content to the right */
-  transform: translateX(50%); /* Moves the content to the center of the page */
+  transform: translateX(-80%); /* Moves the content to the center of the page */
 }
 
 .search-input {
@@ -66,22 +64,32 @@
   cursor: pointer;
 }
 
-
-.search-url li {
-  float: left;
-  padding: 5px;
-  list-style-type: none;
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  transform: translate(-600%, 170%);
-}
-
-.topbar-right{
+.topbar-right {
   float: left;
   position: relative;
-  left: 1430px; /* Adjust as needed for spacing */
+  left: 1120px; /* Adjust as needed for spacing */
   height: -2px;
 }
 
+/* Dark mode styles */
+.topbar.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+}
 
+.dark-mode .buttonSign {
+  background-color: #555;
+  color: #fff;
+  border-color: #555;
+}
+
+.dark-mode .search-input {
+  background-color: #555;
+  color: #fff;
+  border-color: #777;
+}
+
+.dark-mode .search-button {
+  background-color: #777;
+  border-color: #777;
+}

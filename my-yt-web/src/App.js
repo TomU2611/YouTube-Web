@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Home from './homePage/Home'; 
 import './App.css';
+import WatchVideo from './watchVideo/WatchVideo';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
-      <Home darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <WatchVideo darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
     </div>
   );
 }

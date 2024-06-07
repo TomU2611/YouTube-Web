@@ -1,0 +1,35 @@
+/* WatchVideo.css */
+
+.watch-video-container {
+    padding: 15px;
+    background-color: #fff;
+    height: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+  }
+  
+  .video-list-container {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-left: 3px solid #ddd; /* Border between the main video and the video list */
+    margin-left: -250px; /* Add left margin to move the container to the right */
+    height: 100%;
+    width: 550px;
+    margin-top: 20px; /* Adjust this value to move the video list lower */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+  }
+  
+  .Home.dark-mode .watch-video-container {
+    background-color: #222; /* Dark background for dark mode */
+  }
+  
+  .Home.dark-mode .video-list-container {
+    background-color: #333; /* Dark background for dark mode */
+    border-color: #444; /* Adjust border color for dark mode */
+  }
+  .video-list {
+    padding: 15px;
+    margin-left: -150px; /* Add left margin to move the container to the right */
+    height: 100%;
+    width: 550px;
+    margin-top: 20px; /* Adjust this value to move the video list lower */
+  }
