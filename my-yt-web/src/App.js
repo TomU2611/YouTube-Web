@@ -2,6 +2,27 @@ import React, { useState } from 'react';
 import Home from './homePage/Home'; 
 import './App.css';
 
+import SideBar from './sideBar/SideBar';
+import AddVideo from './addVideo/AddVideo';
+
+
+
+function App() {
+  return (
+    <div className="App">
+       <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-9-fluid">
+          <TopBar />
+          </div>
+          <div class="col-sm-3-fluid">
+          <SideBar/>
+          <Dropdown/>
+          </div> 
+        </div>
+      </div>
+=======
+
 function App() {
   const [darkMode, setDarkMode] = useState(false);
 
