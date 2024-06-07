@@ -1,8 +1,6 @@
 .AddedVideoList {
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
-    padding-left: 20px;
 }
 
 .AddedVideoListHeader {
@@ -14,5 +12,5 @@
 
 .headerItem {
     text-align: left;
-    padding-left: 200px;
+    margin-left: 200px;
 }

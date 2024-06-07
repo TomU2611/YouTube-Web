@@ -11,7 +11,7 @@ function AddedVideoList({ videos, setVideosList }) {
                         <div className="headerItem">Title</div>
                         <div className="headerItem">Views</div>
                         <div className="headerItem">Time Ago</div>
-                    </div>
+            </div>
             { videos.length > 0 ? (
                 <>
                     {videos.map((video, index) => (

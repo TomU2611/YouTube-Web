@@ -7,10 +7,12 @@ function AddVideo() {
   const [videos, setVideosList] = useState([]);
 
   return (
-    <div className="add-video">
-      <AddVideoForm setVideosList={setVideosList} />
-      <div className="AddedVideoList">
-        <AddedVideoList videos={videos} setVideosList={setVideosList} />
+    <div className="add-video-container">
+      <div className="add-video-form-container">
+        <AddVideoForm setVideosList={setVideosList} />
+      </div>
+      <div className="added-video-list-container">
+        <AddedVideoList videos={videos} />
       </div>
     </div>
   );

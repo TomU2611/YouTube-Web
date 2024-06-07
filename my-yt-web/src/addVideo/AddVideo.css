@@ -1,0 +1,17 @@
+.add-video-container {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .add-video-form-container {
+    flex: 1;
+    margin-top: 50px;
+    margin-left: 240px;
+  }
+  
+  .added-video-list-container {
+    flex: 2;
+    margin-top: 60px;
+    margin-left: -40px;
+  }
+  

@@ -13,9 +13,7 @@ import AddVideo from './addVideo/AddVideo';
 function App() {
   return (
     <div className="App">
-      <AddVideo />
-
-      {/* <div class="container-fluid">
+       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-9-fluid">
           <TopBar />
@@ -24,8 +22,11 @@ function App() {
           <SideBar/>
           <Dropdown/>
           </div>
+          <div class="page">
+            <AddVideo />
+          </div>
         </div>
-      </div> */}
+      </div>
 
     </div>
   );
