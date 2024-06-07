@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dropdown.css';
 
-const Dropdown = () => {
+const Dropdown = ({ toggleDarkMode }) => {
   return (
     <div className="dropdown">
       <button className="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
@@ -44,8 +44,10 @@ const Dropdown = () => {
               <span className="w-70 m-2">Add Video</span>
             </li>
             <li className="list-group-item d-flex justify-content align-items-center">
-            <i class="bi bi-cloud-moon"></i>
-              <span className="w-70 m-2">Dark mode</span>
+              <button onClick={toggleDarkMode} className="btn" style={{ background: 'none', border: 'none' }}>
+                <i className="bi bi-cloud-moon"></i>
+                <span className="w-70 m-2">Dark mode</span>
+              </button>
             </li>
           </ul>
         </div>
