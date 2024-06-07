@@ -1,15 +1,18 @@
-.AddedVideoList > div{
-    float: left;
-    padding: 5px;
-    padding-bottom: 20px;
-}
-.AddedVideoList > div:hover{
-    background-color: lightgray;
-    cursor: pointer;
-    border-radius: 10px;
-}
 .AddedVideoList {
-    clear: both;
-    padding-top: 300px;
-    padding-left: 250px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.AddedVideoListHeader {
+    display: flex;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.headerItem {
+    text-align: left;
+    padding-left: 200px;
 }

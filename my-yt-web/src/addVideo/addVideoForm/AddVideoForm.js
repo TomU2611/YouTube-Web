@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import './AddVideoForm.css';
 
-function AddVideoForm() {
+function AddVideoForm({ setVideosList }) {
   const [title, setTitle] = useState('');
   const [photo, setPhoto] = useState(null);
   const [video, setVideo] = useState(null);
-  const [videos, setVideos] = useState([]);
 
     const handlePhotoChange = (event) => {
       setPhoto(event.target.files[0]);
@@ -28,8 +27,8 @@ function AddVideoForm() {
         photo: URL.createObjectURL(photo),
         video: URL.createObjectURL(video)
       };
-  
-      setVideos([...videos, newVideo]);
+      // Add the new video to the list of videos in the AddVideo list
+      setVideosList(prevVideos => [...prevVideos, newVideo]);
   
       // Clear the form fields
       setTitle('');
@@ -37,13 +36,22 @@ function AddVideoForm() {
       setVideo(null);
     };
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-            <input type="file" onChange={handlePhotoChange} />
-            <input type="file" onChange={handleVideoChange} />
-            <button type="submit">Submit</button>
-        </form>
-    );
+      <form onSubmit={handleSubmit} className="AddVideoForm">
+      <label>
+        Title:
+        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+      </label>
+      <label>
+        Photo:
+        <input type="file" onChange={handlePhotoChange} />
+      </label>
+      <label>
+        Video:
+        <input type="file" onChange={handleVideoChange} />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  );
 }
 
 export default AddVideoForm;

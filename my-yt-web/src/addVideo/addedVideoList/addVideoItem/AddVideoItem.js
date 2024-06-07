@@ -1,16 +1,18 @@
 import React from 'react';
 import './AddVideoItem.css';
 
-//display the video item
-function AddVideoItem({video}) {
-    const imagePath = `${process.env.PUBLIC_URL}/photos/${video.photo}`;
+function AddVideoItem({ video, index, deleteVideo }) {
     return (
         <div className="AddedVideoItem">
-            <img src={imagePath} alt={video.title} />
-            <div>{video.title}</div>
-            {/* Input the author views and timeAgo */}
-            <smallText>{"user"}</smallText>  
-            <smallText>{"5"} Views - {"one hour ago"}</smallText>
+            <img src={video.photo} className="videoPhoto" />
+            <div className="videoDetails">
+                <div className="videoTitle">{video.title}</div>
+                <div className="videoViews">{"10"}</div>
+                <div className="videoTimeAgo">{"1 hour ago"}</div>
+                <div className="videoActions">
+                    <button className="deleteButton" onClick={() => deleteVideo(index)}>Delete</button>
+                </div>
+            </div>
         </div>
     );
 }

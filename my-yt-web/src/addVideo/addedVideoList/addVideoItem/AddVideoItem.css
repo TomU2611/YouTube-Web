@@ -1,20 +1,43 @@
-.AddVideoItem {
-    text-align: left;
-    direction: ltr;
+.AddedVideoItem {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.videoPhoto {
+    width: 100px;
+    height: auto;
     border-radius: 10px;
+    margin-right: 10px;
 }
-.AddVideoItem img {
-    width: 300px;
-    border-radius: 10px;
+
+.videoDetails {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
 }
-.AddVideoItem div {
-    font-size: 27px;
-    color: black;
-    font-weight: bold;
-    display: block;
+
+.videoTitle {
+    font-size: 18px;
+    color: #3b3b3b;
+    padding-left: 90px;
 }
-.AddVideoItem smallText {
-    font-size: 15px;
-    color: gray;
-    display: block;
+
+.videoViews, .videoTimeAgo {
+    font-size: 18px;
+    color: #3b3b3b;
+    padding-left: 205px;
+}
+.deleteButton {
+    background-color: gray;
+    color: white;
+    border: none;
+    padding-left: 100px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+  
+.deleteButton:hover {
+    background-color: darkgray;
 }
