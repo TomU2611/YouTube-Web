@@ -29,47 +29,6 @@ const TopBar = () => {
         </button>
       </div>
 
-
-      <div className="search-url">
-        <ul>
-          <li>
-            <a href=''>Sports</a>
-          </li>
-          <li>
-            <a href=''>Sports</a>
-          </li>
-          <li>
-            <a href=''>Sports</a>
-          </li>
-          <li>
-            <a href=''>Sports</a>
-          </li>
-          <li>
-            <a href=''>Sports</a>
-          </li>
-          <li>
-            <a href=''>Sports</a>
-          </li>
-          <li>
-            <a href=''>Sports</a>
-          </li>
-          <li>
-            <a href=''>Sports</a>
-          </li>
-          <li>
-            <a href=''>Sports</a>
-          </li>
-          <li>
-            <a href=''>Sports</a>
-          </li>
-          <li>
-            <a href=''>Sports</a>
-          </li>
-        </ul>
-      </div>
-
-
-
     </div>
   );
 };

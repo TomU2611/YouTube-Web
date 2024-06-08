@@ -3,7 +3,7 @@ import videos from "../data/defaultVideos.json";
 import { useState } from 'react';
 import './VideoList.css';
 
-function VideoList() {
+function VideoList({ onVideoItemClick }) {
     const [videosList, setVideosList] = useState(videos);
     console.log(videosList)
     var i = 1
@@ -13,12 +13,12 @@ function VideoList() {
 
     return (
         <div className="VideoList">
-           { 
-                videosList.map((video) =>
-                    <VideoItem {...video} />
-                )
-            }
-        </div>
+        {videosList.map((video) =>
+            <VideoItem key={video.id} {...video} onClick={() => onVideoItemClick(video)} />
+        )}
+    </div>
+
+        
       );
 }
 
