@@ -1,9 +1,9 @@
-.VideoList > div{
+.VideoList > .vid{
     float: left;
     padding: 5px;
     padding-bottom: 20px;
 }
-.VideoList > div:hover{
+.VideoList > .vid:hover{
     background-color: lightgray;
     cursor: pointer;
     border-radius: 10px;

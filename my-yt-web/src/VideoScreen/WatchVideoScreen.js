@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './WatchVideoScreen.css';
 import defaultAvatar from './default-avatar.png'; // Assuming there's a default avatar image
+import { useParams } from 'react-router-dom';
 
-const WatchVideoScreen = () => {
+
+function WatchVideoScreen() {
+  const { videoPath } = useParams();
+  const [currentVideoPath, setCurrentVideoPath] = useState(videoPath);
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
   const [shares, setShares] = useState(0);
@@ -13,6 +17,11 @@ const WatchVideoScreen = () => {
   const [commentAuthor, setCommentAuthor] = useState('Anonymous');
   const [commentAvatar, setCommentAvatar] = useState(defaultAvatar);
 
+  useEffect(() => {
+    setCurrentVideoPath(videoPath);
+  }, [videoPath]);
+
+  
   const handleLike = () => {
     setLikes(likes + 1);
   };
@@ -46,20 +55,20 @@ const WatchVideoScreen = () => {
   };
 
   return (
+
     <div className="watch-video-container">
       <div className="video-player">
         <video controls width="100%">
-          <source src="your-video-url.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
+          <source src={`/videos/${currentVideoPath}`} type="video/mp4" />
         </video>
       </div>
       <div className="video-info">
-      <div className="button-container">
-  <button onClick={handleLike}>Like ({likes})</button>
-  <button onClick={handleDislike}>Dislike ({dislikes})</button>
-  <button onClick={handleShare}>Share ({shares})</button>
-  <button onClick={handleDownload}>Download ({downloads})</button>
-  <button onClick={handleSubscribers}>Subscribers ({subscribers})</button>
+        <div className="button-container">
+          <button onClick={handleLike}>Like ({likes})</button>
+          <button onClick={handleDislike}>Dislike ({dislikes})</button>
+          <button onClick={handleShare}>Share ({shares})</button>
+          <button onClick={handleDownload}>Download ({downloads})</button>
+          <button onClick={handleSubscribers}>Subscribers ({subscribers})</button>
         </div>
         <div className="comments-section">
           <h3>{comments.length} Comments</h3>
@@ -81,6 +90,8 @@ const WatchVideoScreen = () => {
         </div>
       </div>
     </div>
+
+
   );
 };
 
