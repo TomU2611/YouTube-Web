@@ -12,7 +12,7 @@
     font-weight: bold;
     display: block;
 }
-.VideoItem smallText {
+.VideoItem p {
     font-size: 15px;
     color: gray;
     display: block;

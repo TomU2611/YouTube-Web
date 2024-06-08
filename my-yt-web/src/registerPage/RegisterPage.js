@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './RegisterPage.css';
+import { Link } from 'react-router-dom';
 
-function RegisterPage(){
+function RegisterPage({users, setUsers}){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [displayName, setDisplayName] = useState('');
     const [rePassword, setRePassword] = useState('');
     const [profilePicture, setProfilePicture] = useState(null);
-    const [isValid, setIsValid] = useState(true);
+    const [message, setMessage] = useState('');
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -32,39 +33,45 @@ function RegisterPage(){
 
     const validateInputs = () => {
         // Reset validation state
-        setIsValid(true);
+        
 
         // Check if all fields are filled
         if (!username || !password || !displayName || !rePassword || !profilePicture) {
-            setIsValid(false);
+            setMessage('Invalid input!');
             return;
         }
 
         // Check if passwords match
         if (password !== rePassword) {
-            setIsValid(false);
+            setMessage('Invalid input!');
             return;
         }
 
         // Check password complexity
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         if (!passwordRegex.test(password)) {
-            setIsValid(false);
+            setMessage('Invalid input!');
             return;
         }
+        const newUser = {
+            username: username,
+            password: password,
+            displayName: displayName,
+            profilePicture: URL.createObjectURL(profilePicture)
+        };
+        
+        setUsers([...users, newUser]);
+        setMessage('Account Created');
     };
 
     const handleSubmit = () => {
         validateInputs();
-        if (isValid) {
-            // Perform account creation logic
-            console.log('Account created successfully!');
-        }
+    
     };
 
     return (
         <div className="register-container">
-            <div className="youtube-icon"></div>
+            <Link to="/"><div className="youtube-icon"></div></Link>
             <form className="register-form">
                 <h2>Sign Up</h2>
                 
@@ -94,7 +101,11 @@ function RegisterPage(){
                 <div className="form-buttons">
                     <button type="button" onClick={handleSubmit}>Create Account</button>
                 </div>
-                {!isValid && <div className="invalid-input-message">Invalid input!</div>}
+                {message && (
+                    <div className={message === 'Invalid input!' ? 'invalid-input-message' : 'valid-input-message'}>
+                        {message}
+                    </div>
+                )}
             </form>
         </div>
     );

@@ -89,3 +89,14 @@
 .login-form .form-buttons button[type="submit"]:hover {
     background-color: #218838;
 }
+.invalid-input-message {
+    color: red;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.valid-input-message {
+    color: green;
+    padding: 10px;
+    font-size: 20px;
+}

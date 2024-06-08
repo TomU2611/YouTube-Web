@@ -109,8 +109,15 @@
 .custom-file-upload:hover {
     background-color: #f1f1f1;
 }
+
 .invalid-input-message {
     color: red;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.valid-input-message {
+    color: green;
     padding: 10px;
     font-size: 20px;
 }

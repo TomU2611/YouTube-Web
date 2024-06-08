@@ -7,19 +7,23 @@ import VideoList from '../videoList/Videolist';
 import WatchVideoScreen from '../VideoScreen/WatchVideoScreen';
 import { Routes, Route } from 'react-router-dom';
 import AddVideo from '../addVideo/AddVideo';
+import videos from '../data/defaultVideos.json';
+import { useState } from 'react';
 
 
 
 
+function Home({ darkMode, toggleDarkMode, connection}) {
+  const [videoList, setVideos] = useState(videos);
 
-function Home({ darkMode, toggleDarkMode }) {
+
   return (
     <div className={`Home ${darkMode ? 'dark-mode' : ''}`}>
-      <TopBar />
+      <TopBar connection={connection} />
       <Routes>
         <Route path="/" element={
           <div>
-            <VideoList />
+            <VideoList videoList={videoList}/>
             <div className="container-fluid">
               <div className="row">
                 <div className="col-sm-3">
@@ -29,10 +33,10 @@ function Home({ darkMode, toggleDarkMode }) {
             </div>
           </div>
         } />
-        <Route path="/watch/:videoPath" element={
-          <div>
-            <WatchVideoScreen />
-            <VideoList />
+        <Route path="/watch/:videoID" element={
+          <div className='videoScreen'>
+            <WatchVideoScreen className='watchVideo' videoList={videoList} setVideos={setVideos}/>
+            
           </div>
         } />
         <Route path="/add" element={<AddVideo />} />

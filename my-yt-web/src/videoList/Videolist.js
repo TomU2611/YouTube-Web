@@ -1,18 +1,16 @@
 import VideoItem from "./videoItem/VideoItem";
-import videos from "../data/defaultVideos.json";
-import { useState } from 'react';
 import './VideoList.css';
 import { Link } from "react-router-dom";
 
-function VideoList() {
-    const [videosList, setVideosList] = useState(videos);
+function VideoList({videoList}) {
+    
     
     
 
     return (
         <div className="VideoList">
-            {videosList.map((video) =>
-                <Link className="vid" to={`/watch/${video.video}` } ><VideoItem  {...video}></VideoItem></Link>
+            {videoList.map((video, key) =>
+                <Link className="vid" to={`/watch/${video.index}` } ><VideoItem key={key} {...video}></VideoItem></Link>
                 
             )}
         </div>

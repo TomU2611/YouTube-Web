@@ -6,24 +6,43 @@ import { Link } from 'react-router-dom';
 import Dropdown  from './Dropdown';
 //import searchIcon from './logo.png';
 
-const TopBar = () => {
+function TopBar({connection, users} ) {
+  const profilePicture = null;
+  if (connection.isConnected) {
+    const user = users.find(user => user.username == connection.user);
+    profilePicture = user.profilePicture;
+  }
 
   return (
     <div>
       <div className="topbar">
 
         <div className="topbar-right">
-          <Link to="/login">
-            <button type="button" className="buttonSign">
-              <i className="bi bi-person icon"></i>
-              <span className="buttonText">Sign In</span>
-            </button>
-          </Link>
+          {!connection.isConnected &&
+            <Link to="/login">
+              <button type="button" className="buttonSign">
+                <i className="bi bi-person icon"></i>
+                <span className="buttonText">Sign In</span>
+              </button>
+            </Link>
+          }
+          {connection.isConnected &&
+            <div>
+              <div className="profile-picture">
+                    <img src={profilePicture  }   />
+              </div>
+
+            
+              <button type="button" className="buttonSign">
+                <span className="buttonText">Sign Out</span>
+              </button>
+            </div>
+          }
         </div>
 
 
         <div className="topbar-left">
-          <img src={logoImg} alt="" className="logo" />
+          <Link to="/"><img src={logoImg} alt="" className="logo" /></Link>
         </div>
 
 

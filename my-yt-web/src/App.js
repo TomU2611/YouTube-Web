@@ -6,11 +6,14 @@ import { BrowserRouter, Route,Routes, link } from 'react-router-dom';
 import LoginPage from './loginPage/LoginPage';
 import RegisterPage from './registerPage/RegisterPage';
 
-
+import usersFile from './data/users';
 
 function App() {
+  const [users, setUsers] = useState(usersFile);
+  
   const [darkMode, setDarkMode] = useState(false);
-
+  
+  const [connection, setConnection] = useState({ isConnected: false, user: '' });
   const toggleDarkMode = () => {
     setDarkMode(prevDarkMode => !prevDarkMode);
   };
@@ -18,9 +21,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/*" element={<Home/>}/>
+        <Route path="/login" element={<LoginPage users={users} setConnection={setConnection}/>} />
+        <Route path="/register" element={<RegisterPage users={users} setUsers={setUsers} />} />
+        <Route path="/*" element={<Home connection={connection} users={users}/>}/>
       </Routes>
     
     </BrowserRouter>

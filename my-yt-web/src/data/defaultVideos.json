@@ -6,7 +6,11 @@
         "timeAgo": "1 hour ago",
         "views": 1000,
         "photo": "boat.jpg",
-        "video": "boat.mp4"
+        "path": "boat.mp4",
+        "likes": 2,
+        "dislikes": 0,
+        "commentsNum": 0,
+        "comments": []
     },
     {
         "index": 1,
@@ -15,7 +19,11 @@
         "timeAgo": "2 hours ago",
         "views": 2000,
         "photo": "buildings.jpg",
-        "video":"buildings.mp4"
+        "path":"buildings.mp4",
+        "likes": 0,
+        "dislikes": 3,
+        "commentsNum": 0,
+        "comments": []
     },
     {
         "index": 2,
@@ -24,7 +32,11 @@
         "timeAgo": "3 hours ago",
         "views": 3000,
         "photo": "ferris_wheel.jpg",
-        "video": "ferris_wheel.mp4"
+        "path": "ferris_wheel.mp4",
+        "likes": 0,
+        "dislikes": 0,
+        "commentsNum": 0,
+        "comments": []
     },
     {
         "index": 3,
@@ -33,7 +45,11 @@
         "timeAgo": "4 hours ago",
         "views": 4000,
         "photo": "girl_flowers.jpg",
-        "video": "girl_flowers.mp4"
+        "path": "girl_flowers.mp4",
+        "likes": 0,
+        "dislikes": 0,
+        "commentsNum": 0,
+        "comments": []
     },
     {
         "index": 4,
@@ -42,7 +58,11 @@
         "timeAgo": "5 hours ago",
         "views": 5000,
         "photo": "hard_rock_cafe.jpg",
-        "video": "hard_rock_cafe.mp4"
+        "path": "hard_rock_cafe.mp4",
+        "likes": 0,
+        "dislikes": 0,
+        "commentsNum": 0,
+        "comments": []
     },
     {
         "index": 5,
@@ -51,7 +71,11 @@
         "timeAgo": "6 hours ago",
         "views": 6000,
         "photo": "hilton.jpg",
-        "video": "hilton.mp4"
+        "path": "hilton.mp4",
+        "likes": 0,
+        "dislikes": 0,
+        "commentsNum": 0,
+        "comments": []
     },
     {
         "index": 6,
@@ -60,7 +84,11 @@
         "timeAgo": "7 hours ago",
         "views": 7000,
         "photo": "keyboard.jpg",
-        "video": "keyboard.mp4"
+        "path": "keyboard.mp4",
+        "likes": 0,
+        "dislikes": 0,
+        "commentsNum": 0,
+        "comments": []
     },
     {
         "index": 7,
@@ -69,7 +97,11 @@
         "timeAgo": "8 hours ago",
         "views": 8000,
         "photo": "kite.jpg",
-        "video": "kite.mp4"
+        "path": "kite.mp4",
+        "likes": 0,
+        "dislikes": 0,
+        "commentsNum": 0,
+        "comments": []
     },
     {
         "index": 8,
@@ -78,7 +110,11 @@
         "timeAgo": "9 hours ago",
         "views": 9000,
         "photo": "men_sunset.jpg",
-        "video": "men_sunset.mp4"
+        "path": "men_sunset.mp4",
+        "likes": 0,
+        "dislikes": 0,
+        "commentsNum": 0,
+        "comments": []
     },
     {
         "index": 9,
@@ -87,7 +123,11 @@
         "timeAgo": "10 hours ago",
         "views": 10000,
         "photo": "road.jpg",
-        "video": "road.mp4"
+        "path": "road.mp4",
+        "likes": 0,
+        "dislikes": 0,
+        "commentsNum": 0,
+        "comments": []
     },
     {
         "index": 10,
@@ -96,6 +136,10 @@
         "timeAgo": "11 hours ago",
         "views": 11000,
         "photo": "women_reading.jpg",
-        "video": "women_reading.mp4"
+        "path": "women_reading.mp4",
+        "likes": 0,
+        "dislikes": 0,
+        "commentsNum": 0,
+        "comments": []
     }
 ]
