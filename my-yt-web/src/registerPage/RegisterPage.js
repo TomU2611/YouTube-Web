@@ -76,11 +76,12 @@ function RegisterPage({users, setUsers}){
                 <h2>Sign Up</h2>
                 
                 <div className="profile-picture">
-                    <img src={profilePicture ? URL.createObjectURL(profilePicture) : ''}  />
+                    <img src={profilePicture ? URL.createObjectURL(profilePicture) : ''} alt="" />
+                    {!profilePicture &&(
                     <label className="custom-file-upload">
                         Choose Profile Picture
                         <input type="file" accept="image/*" onChange={handleProfilePictureChange} />
-                    </label>
+                    </label>)}
                 </div>
                 <div className="form-group">
                     <span>Display Name</span>

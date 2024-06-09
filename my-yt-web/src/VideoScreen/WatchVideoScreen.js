@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import videos from "../data/defaultVideos.json";
 import VideoList from '../videoList/Videolist';
 
-function WatchVideoScreen({videoList, setVideos}) {
+function WatchVideoScreen({users,connection,videoList, setVideos}) {
 
   const { videoID } = useParams();
   const [videoPath, setVideoPath] = useState(videoList[videoID].path);
@@ -13,10 +13,8 @@ function WatchVideoScreen({videoList, setVideos}) {
   const [shares, setShares] = useState(0);
   const [downloads, setDownloads] = useState(0);
   const [subscribers, setSubscribers] = useState(0);
-  const [comments, setComments] = useState([]);
+  
   const [commentText, setCommentText] = useState('');
-  const [commentAuthor, setCommentAuthor] = useState('Anonymous');
-  const [commentAvatar, setCommentAvatar] = useState(defaultAvatar);
   
   
   useEffect(() => {
@@ -50,12 +48,14 @@ function WatchVideoScreen({videoList, setVideos}) {
 
   const handleComment = () => {
     const newVideos = [...videoList];
-    if (commentText.trim() !== '') {
+    if (commentText.trim() !== '' && connection.isConnected) {
       const newComment = {
         commentID: videoList[videoID].commentsNum,
-        author: commentAuthor,
-        text: commentText
+        author: users.find(user => user.username === connection.user).displayName,
+        text: commentText,
+        avatar: users.find(user => user.username === connection.user).profilePicture || defaultAvatar
       };
+
       const updatedVIdeoList = videoList.map(video => {
         if (video.index == videoID) {
           return {
@@ -68,50 +68,50 @@ function WatchVideoScreen({videoList, setVideos}) {
         return video;
       });
       setVideos(updatedVIdeoList);
-      setCommentText('');
+      
     }
   };
 
   return (
     <div className='big-container'>
-    <div className="watch-video-container">
-      <div className="video-player">
-        <video  width="100%" src={`/videos/${videoPath}`} type="video/mp4" autoPlay controls></video>
-      </div>
-      <div className="video-info">
-        <div className="button-container">
-          <button onClick={handleLike}>Like ({videoList[videoID].likes})</button>
-          <button onClick={handleDislike}>Dislike ({videoList[videoID].dislikes})</button>
-          <button onClick={handleShare}>Share ({shares})</button>
-          <button onClick={handleDownload}>Download ({downloads})</button>
-          <button onClick={handleSubscribers}>Subscribers ({subscribers})</button>
+      <div className="watch-video-container">
+        <div className="video-player">
+          <video width="100%" src={`/videos/${videoPath}`} type="video/mp4" autoPlay controls></video>
         </div>
-        <div className="comments-section">
-          <h3>{videoList[videoID].commentsNum} Comments</h3>
-          <div className="comment-input-container">
-            <input
-              type="text"
-              value={commentText}
-              onChange={(e) => setCommentText(e.target.value)}
-              placeholder="Add a comment"
-            />
-            <button onClick={handleComment}>Comment</button>
+        <div className="video-info">
+          <div className="button-container">
+            <button onClick={handleLike}>Like ({videoList[videoID].likes})</button>
+            <button onClick={handleDislike}>Dislike ({videoList[videoID].dislikes})</button>
+            <button onClick={handleShare}>Share ({shares})</button>
+            <button onClick={handleDownload}>Download ({downloads})</button>
+            <button onClick={handleSubscribers}>Subscribers ({subscribers})</button>
           </div>
-          {videoList[videoID].comments.map((comment, index) => (
-            <div key={index} className="comment">
-              <img src={comment.avatar} alt="Avatar" />
-              <span>{comment.author}</span>: {comment.text}
+          <div className="comments-section">
+            <h3>{videoList[videoID].commentsNum} Comments</h3>
+            <div className="comment-input-container">
+              <input
+                type="text"
+                value={commentText}
+                onChange={(e) => setCommentText(e.target.value)}
+                placeholder="Add a comment"
+              />
+              <button onClick={handleComment}>Comment</button>
             </div>
-          ))}
+            {videoList[videoID].comments.map((comment, index) => (
+              <div key={index} className="comment">
+                <img src={comment.avatar} alt="" />
+                <span>{comment.author}</span>: {comment.text}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="video-list-container">
+        <div className="video-list">
+          <VideoList videoList={videoList} />
         </div>
       </div>
     </div>
-     <div className="video-list-container">
-      <div className="video-list">
-        <VideoList videoList={videoList} />
-       </div>
-     </div>
-     </div>
 
   );
 };

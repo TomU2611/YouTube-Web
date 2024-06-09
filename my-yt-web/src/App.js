@@ -5,10 +5,11 @@ import './App.css';
 import { BrowserRouter, Route,Routes, link } from 'react-router-dom';
 import LoginPage from './loginPage/LoginPage';
 import RegisterPage from './registerPage/RegisterPage';
-
+import videos from './data/defaultVideos.json';
 import usersFile from './data/users';
 
 function App() {
+  const [videoList, setVideos] = useState(videos);
   const [users, setUsers] = useState(usersFile);
   
   const [darkMode, setDarkMode] = useState(false);
@@ -21,9 +22,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<LoginPage users={users} setConnection={setConnection}/>} />
+        <Route path="/login" element={<LoginPage users={users} setConnection={setConnection} darkMode={darkMode}/>} />
         <Route path="/register" element={<RegisterPage users={users} setUsers={setUsers} />} />
-        <Route path="/*" element={<Home connection={connection} users={users}/>}/>
+        <Route path="/*" element={<Home connection={connection} setConnection={setConnection} users={users} videoList={videoList} setVideos={setVideos}/>}/>
       </Routes>
     
     </BrowserRouter>

@@ -34,7 +34,7 @@ function LoginPage({users, setConnection}){
         // Redirect to home page
         setMessage('Login successful!');
         // Redirect to home page without refreshing
-        window.location.href = '/';
+       
     };
 
    

@@ -93,10 +93,26 @@
   background-color: #777;
   border-color: #777;
 }
-.profile-picture img {
-  width: 30px;
-  height: 30px;
+.profile-picture  {
+  
   border-radius: 50%;
-  object-fit: cover;
+  margin-right: 10px;
+  margin-left: auto;
   margin-bottom: 10px;
+  cursor: pointer;
+  
+   
+  
+ 
+}
+.userImg {
+  width: 80px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  margin-right: 10px !important;
+  margin-left: 10px !important;
+  margin-bottom: 10px !important;
+  
+  
+
 }

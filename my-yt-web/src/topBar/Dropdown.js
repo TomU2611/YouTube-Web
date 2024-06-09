@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dropdown.css';
-
+import { useNavigate } from 'react-router-dom';
 const Dropdown = ({ toggleDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const navigate = useNavigate();
+  const handleRedirection = (path) => {
+    navigate(path);
+  };
   const toggleDropdown = () => {
     setIsOpen(prevIsOpen => !prevIsOpen);
   };
+
+ 
 
   return (
     <div className={`dropdown ${isOpen ? 'open' : ''}`}>
@@ -21,10 +26,14 @@ const Dropdown = ({ toggleDarkMode }) => {
         </div>
         <div className="offcanvas-body">
           <ul className="list-group">
-            <li className="list-group-item d-flex justify-content align-items-center">
+         
+            <li onClick={() => handleRedirection("/")} className="list-group-item d-flex justify-content align-items-center">
+              
               <i className="bi bi-house-door"></i>
               <span className="w-70 m-2">Home</span>
+              
             </li>
+           
             <li className="list-group-item d-flex justify-content align-items-center">
               <i className="bi bi-film"></i>
               <span className="w-70 m-2">Shorts</span>
@@ -45,9 +54,11 @@ const Dropdown = ({ toggleDarkMode }) => {
               <i className="bi bi-music-note-beamed"></i>
               <span className="w-70 m-2">Music</span>
             </li>
-            <li className="list-group-item d-flex justify-content align-items-center">
+            <li onClick={() => handleRedirection("/add")} className="list-group-item d-flex justify-content align-items-center">
+              
               <i class="bi bi-plus-circle"></i>
               <span className="w-70 m-2">Add Video</span>
+              
             </li>
             <li className="list-group-item d-flex justify-content align-items-center">
               <button onClick={toggleDarkMode} className="btn" style={{ background: 'none', border: 'none' }}>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AddVideoForm.css';
 
-function AddVideoForm({ setVideosList }) {
+function AddVideoForm({ videosList, setVideos, users, connection}) {
   const [title, setTitle] = useState('');
   const [photo, setPhoto] = useState(null);
   const [video, setVideo] = useState(null);
@@ -23,12 +23,19 @@ function AddVideoForm({ setVideosList }) {
     }
 
     const newVideo = {
-      title,
+      title: title,
+      author: connection.username,
+      timeAgo: new Date().toLocaleString(),
+      views: 0,
       photo: URL.createObjectURL(photo),
-      video: URL.createObjectURL(video),
+      path: URL.createObjectURL(video),
+      likes: 0,
+      dislikes: 0,
+      commentsNum: 0,
+      comments: []
     };
     // Add the new video to the list of videos in the AddVideo list
-    setVideosList((prevVideos) => [...prevVideos, newVideo]);
+    setVideos( (prevVideos) => [...prevVideos, newVideo]);
 
     // Clear the form fields
     setTitle('');
