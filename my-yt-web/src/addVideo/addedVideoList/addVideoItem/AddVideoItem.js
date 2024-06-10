@@ -4,7 +4,7 @@ import './AddVideoItem.css';
 function AddVideoItem({ videoList, index, deleteVideo }) {
     return (
         <div className="AddedVideoItem">
-            <img src={`photos/${videoList[index].photo}`} className="videoPhoto" />
+            <img src={videoList[index].photo} className="videoPhoto" />
             <div className="videoDetails">
                 <div className="videoTitle">{videoList[index].title}</div>
                 <div className="videoViews">{videoList[index].views}</div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AddVideoForm.css';
 
-function AddVideoForm({ videosList, setVideos, users, connection}) {
+function AddVideoForm({ videoList, setVideos, users, connection}) {
   const [title, setTitle] = useState('');
   const [photo, setPhoto] = useState(null);
   const [video, setVideo] = useState(null);
@@ -19,28 +19,33 @@ function AddVideoForm({ videosList, setVideos, users, connection}) {
 
     if (!title || !photo || !video) {
       alert('Please fill out all fields and upload both photo and video.');
+      setTitle('');
+      setPhoto(null);
+      setVideo(null);
       return;
     }
 
     const newVideo = {
+      index: videoList.length,
       title: title,
-      author: connection.username,
+      author: connection.user,
       timeAgo: new Date().toLocaleString(),
       views: 0,
       photo: URL.createObjectURL(photo),
-      path: URL.createObjectURL(video),
+      path: `${URL.createObjectURL(video)}`,
       likes: 0,
       dislikes: 0,
       commentsNum: 0,
       comments: []
     };
     // Add the new video to the list of videos in the AddVideo list
-    setVideos( (prevVideos) => [...prevVideos, newVideo]);
+    setVideos( (videoList) => [...videoList, newVideo]);
 
     // Clear the form fields
     setTitle('');
     setPhoto(null);
     setVideo(null);
+
   };
 
   return (

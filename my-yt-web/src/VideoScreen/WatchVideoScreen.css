@@ -153,10 +153,10 @@
   padding: 15px;
   
   overflow-y: scroll;
-  max-height: 800px;
+  max-height: 1500px;
   margin-left: -150px; /* Add left margin to move the container to the right */
    /* Set a fixed height for the video list */
   width: 40%; /* Adjust width as needed */
-  
+ 
   
 }

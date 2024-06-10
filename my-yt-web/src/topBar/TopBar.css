@@ -65,6 +65,8 @@
 }
 
 .topbar-right {
+  
+  
   float: left;
   position: relative;
   left: 1120px; /* Adjust as needed for spacing */
@@ -100,11 +102,11 @@
   margin-left: auto;
   margin-bottom: 10px;
   cursor: pointer;
-  
-   
-  
+  display: flex !important;
+  flex-direction: row !important;
  
 }
+
 .userImg {
   width: 80px !important;
   height: 50px !important;

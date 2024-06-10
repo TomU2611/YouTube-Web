@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LoginPage.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 function LoginPage({users, setConnection}){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
     
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -34,7 +35,7 @@ function LoginPage({users, setConnection}){
         // Redirect to home page
         setMessage('Login successful!');
         // Redirect to home page without refreshing
-       
+        navigate('/');
     };
 
    

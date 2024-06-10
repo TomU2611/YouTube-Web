@@ -13,17 +13,17 @@ import { useState } from 'react';
 
 
 
-function Home({ connection, setConnection , users, darkMode, videoList, setVideos}) {
+function Home({ connection, setConnection , users, darkMode, videoList, setVideos, searchQuery, setSearchQuery}) {
   
 
 
   return (
     <div className={`Home ${darkMode ? 'dark-mode' : ''}`}>
-      <TopBar connection={connection} setConnection={setConnection} users={users} />
+      <TopBar connection={connection} setConnection={setConnection} users={users} setSearchQuery={setSearchQuery} />
       <Routes>
         <Route path="/" element={
           <div>
-            <VideoList videoList={videoList}/>
+            <VideoList videoList={videoList} searchQuery={searchQuery}/>
             <div className="container-fluid">
               <div className="row">
                 <div className="col-sm-3">
@@ -35,7 +35,7 @@ function Home({ connection, setConnection , users, darkMode, videoList, setVideo
         } />
         <Route path="/watch/:videoID" element={
           <div className='videoScreen'>
-            <WatchVideoScreen className='watchVideo' users={users} connection={connection} videoList={videoList} setVideos={setVideos}/>
+            <WatchVideoScreen className='watchVideo' users={users} connection={connection} videoList={videoList} setVideos={setVideos} searchQuery={searchQuery}/>
             
           </div>
         } />

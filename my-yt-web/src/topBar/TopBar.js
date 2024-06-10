@@ -1,5 +1,5 @@
 // src/topBar/TopBar.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import logoImg from './logo.png';
 import { Link } from 'react-router-dom';
@@ -7,8 +7,14 @@ import Dropdown  from './Dropdown';
 import './TopBar.css';
 //import searchIcon from './logo.png';
 
-function TopBar({connection, setConnection , users} ) {
+function TopBar({connection, setConnection , users, setSearchQuery} ) {
   const [profilePicture, setProfilePicture] = useState(null);
+  const searchBox = useRef(null);
+  const search = function(){
+    setSearchQuery(searchBox.current.value);
+    console.log(searchBox.current.value);
+  }
+  
   useEffect(() => {
     if (connection.isConnected) {
       const user = users.find(user => user.username === connection.user);
@@ -38,8 +44,9 @@ function TopBar({connection, setConnection , users} ) {
           {connection.isConnected &&(
             <div>
               <div onClick={handleLogout} className="profile-picture">
-                <img className="userImg" src={profilePicture} />
                 <h4>sign out</h4>
+                <img className="userImg" src={profilePicture} />
+                
               </div>
               
             </div>
@@ -53,14 +60,14 @@ function TopBar({connection, setConnection , users} ) {
 
 
         <div className="topbar-center">
-          <input type="text" placeholder="Search" className="search-input" />
+          <input ref={searchBox} onKeyUp={search} type="text" placeholder="Search" className="search-input" />
           <button className="search-button">
-            <i class="bi bi-search"></i>
+            <i className="bi bi-search"></i>
           </button>
         </div>
 
       </div>
-      <Dropdown />
+      <Dropdown connection={connection} />
     </div>
   );
 };

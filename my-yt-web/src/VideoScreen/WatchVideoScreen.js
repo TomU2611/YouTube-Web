@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './WatchVideoScreen.css';
+
 import defaultAvatar from './default-avatar.png'; // Assuming there's a default avatar image
 import { useParams } from 'react-router-dom';
-import videos from "../data/defaultVideos.json";
-import VideoList from '../videoList/Videolist';
 
-function WatchVideoScreen({users,connection,videoList, setVideos}) {
+import VideoList from '../videoList/Videolist';
+import './WatchVideoScreen.css';
+function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) {
 
   const { videoID } = useParams();
   const [videoPath, setVideoPath] = useState(videoList[videoID].path);
@@ -68,6 +68,7 @@ function WatchVideoScreen({users,connection,videoList, setVideos}) {
         return video;
       });
       setVideos(updatedVIdeoList);
+      setCommentText('');
       
     }
   };
@@ -76,15 +77,20 @@ function WatchVideoScreen({users,connection,videoList, setVideos}) {
     <div className='big-container'>
       <div className="watch-video-container">
         <div className="video-player">
-          <video width="100%" src={`/videos/${videoPath}`} type="video/mp4" autoPlay controls></video>
+          <video width="100%" src={videoPath} type="video/mp4" autoPlay controls></video>
         </div>
         <div className="video-info">
           <div className="button-container">
+            <h1>Title: {videoList[videoID].title}</h1>
+            <h3>By: {videoList[videoID].author}</h3>
+            <h3>{videoList[videoID].views} views</h3>
+            <h3>Published on {videoList[videoID].timeAgo}</h3>
             <button onClick={handleLike}>Like ({videoList[videoID].likes})</button>
             <button onClick={handleDislike}>Dislike ({videoList[videoID].dislikes})</button>
             <button onClick={handleShare}>Share ({shares})</button>
             <button onClick={handleDownload}>Download ({downloads})</button>
             <button onClick={handleSubscribers}>Subscribers ({subscribers})</button>
+            
           </div>
           <div className="comments-section">
             <h3>{videoList[videoID].commentsNum} Comments</h3>
@@ -108,7 +114,7 @@ function WatchVideoScreen({users,connection,videoList, setVideos}) {
       </div>
       <div className="video-list-container">
         <div className="video-list">
-          <VideoList videoList={videoList} />
+          <VideoList videoList={videoList} searchQuery={searchQuery}/>
         </div>
       </div>
     </div>

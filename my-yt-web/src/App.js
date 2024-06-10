@@ -11,7 +11,7 @@ import usersFile from './data/users';
 function App() {
   const [videoList, setVideos] = useState(videos);
   const [users, setUsers] = useState(usersFile);
-  
+  const [searchQuery, setSearchQuery] = useState('');
   const [darkMode, setDarkMode] = useState(false);
   
   const [connection, setConnection] = useState({ isConnected: false, user: '' });
@@ -24,7 +24,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage users={users} setConnection={setConnection} darkMode={darkMode}/>} />
         <Route path="/register" element={<RegisterPage users={users} setUsers={setUsers} />} />
-        <Route path="/*" element={<Home connection={connection} setConnection={setConnection} users={users} videoList={videoList} setVideos={setVideos}/>}/>
+        <Route path="/*" element={<Home connection={connection} setConnection={setConnection} users={users} videoList={videoList} setVideos={setVideos} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}/>
       </Routes>
     
     </BrowserRouter>

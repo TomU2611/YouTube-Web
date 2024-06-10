@@ -19,6 +19,7 @@ function AddedVideoList({ videoList, setVideos, users, connection }) {
             { videoList.length > 0 ? (
                 <div>
                     {videoList.map((video, index) => (
+                        video.author == connection.usern &&
                         <AddedVideoItem key={index} videoList={videoList} index={index} deleteVideo={deleteVideo} />
                     ))}
                 </div>

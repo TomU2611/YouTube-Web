@@ -7,25 +7,25 @@ const SideBar = () => {
         <div className="sidebar">
             <ul className="list-group">
                 <li className="list-group-item d-flex justify-content align-items-center">
-                    <i class="bi bi-house-door"></i>
+                    <i className="bi bi-house-door"></i>
                     <span className="w-70 m-2">Home</span>
                     
                 </li>
                 <li className="list-group-item d-flex justify-content align-items-center">
-                    <i class="bi bi-film"></i>
+                    <i className="bi bi-film"></i>
                     <span className="w-70 m-2">Shorts</span>
                 </li>
                 <li className="list-group-item d-flex justify-content align-items-center">
-                    <i class="bi bi-plus-square"></i>
+                    <i className="bi bi-plus-square"></i>
                     <span className="w-70 m-2">Subscriptions</span>
                 </li>
                 <li className="list-group-item d-flex justify-content align-items-center">
-                    <i class="bi bi-youtube"></i>
+                    <i className="bi bi-youtube"></i>
                     <span className="w-70 m-2">You</span>
                     
                 </li>
                 <li className="list-group-item d-flex justify-content align-items-center">
-                    <i class="bi bi-clock-history"></i>
+                    <i className="bi bi-clock-history"></i>
                     <span className="w-70 m-2">History</span>
                 </li>
             </ul>

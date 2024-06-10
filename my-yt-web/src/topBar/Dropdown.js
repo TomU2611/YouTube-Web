@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dropdown.css';
 import { useNavigate } from 'react-router-dom';
-const Dropdown = ({ toggleDarkMode }) => {
+const Dropdown = ({ toggleDarkMode, connection }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const handleRedirection = (path) => {
@@ -33,33 +33,33 @@ const Dropdown = ({ toggleDarkMode }) => {
               <span className="w-70 m-2">Home</span>
               
             </li>
+            {!connection.isConnected && (
+              <li  onClick={() => handleRedirection("/login")} className="list-group-item d-flex justify-content align-items-center">
+                <i className="bi bi-door-open"></i>
+                <span className="w-70 m-2">Sign In</span>
+              </li>
+            )}
+            {connection.isConnected && (
+              <li className="list-group-item d-flex justify-content align-items-center">
+                <i className="bi bi-door-closed"></i>
+                <span className="w-70 m-2">Sign Out</span>
+              </li>
+            )}
+            {!connection.isConnected && (
+              <li onClick={() => handleRedirection("/register")} className="list-group-item d-flex justify-content align-items-center">
+                <i className="bi bi-r-circle"></i>
+                <span className="w-70 m-2">Register</span>
+              </li>
+            )}
            
-            <li className="list-group-item d-flex justify-content align-items-center">
-              <i className="bi bi-film"></i>
-              <span className="w-70 m-2">Shorts</span>
-            </li>
-            <li className="list-group-item d-flex justify-content align-items-center">
-              <i className="bi bi-plus-square"></i>
-              <span className="w-70 m-2">Subscriptions</span>
-            </li>
-            <li className="list-group-item d-flex justify-content align-items-center">
-              <i className="bi bi-youtube"></i>
-              <span className="w-70 m-2">You</span>
-            </li>
-            <li className="list-group-item d-flex justify-content align-items-center">
-              <i className="bi bi-clock-history"></i>
-              <span className="w-70 m-2">History</span>
-            </li>
-            <li className="list-group-item d-flex justify-content align-items-center">
-              <i className="bi bi-music-note-beamed"></i>
-              <span className="w-70 m-2">Music</span>
-            </li>
+           {connection.isConnected && (
             <li onClick={() => handleRedirection("/add")} className="list-group-item d-flex justify-content align-items-center">
               
               <i class="bi bi-plus-circle"></i>
               <span className="w-70 m-2">Add Video</span>
               
             </li>
+           )}
             <li className="list-group-item d-flex justify-content align-items-center">
               <button onClick={toggleDarkMode} className="btn" style={{ background: 'none', border: 'none' }}>
                 <i className="bi bi-cloud-moon"></i>

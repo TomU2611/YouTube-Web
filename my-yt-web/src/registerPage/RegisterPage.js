@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './RegisterPage.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function RegisterPage({users, setUsers}){
     const [username, setUsername] = useState('');
@@ -10,6 +10,7 @@ function RegisterPage({users, setUsers}){
     const [rePassword, setRePassword] = useState('');
     const [profilePicture, setProfilePicture] = useState(null);
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -62,6 +63,7 @@ function RegisterPage({users, setUsers}){
         
         setUsers([...users, newUser]);
         setMessage('Account Created');
+        navigate('/login');
     };
 
     const handleSubmit = () => {
