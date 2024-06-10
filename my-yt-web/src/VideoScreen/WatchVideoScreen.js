@@ -19,7 +19,13 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
   
   useEffect(() => {
     setVideoPath(videoList[videoID].path);
+    incrementViewCount();
   } , [videoID]);
+  const incrementViewCount = () => {
+    const newVideos = [...videoList];
+    newVideos[videoID].views = newVideos[videoID].views + 1;
+    setVideos(newVideos);
+  };
 
   
   const handleLike = () => {
@@ -82,7 +88,7 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
         <div className="video-info">
           <div className="button-container">
             <h1>Title: {videoList[videoID].title}</h1>
-            <h3>By: {videoList[videoID].author}</h3>
+            <h3>By: {videoList[videoID].authorDisplayName}</h3>
             <h3>{videoList[videoID].views} views</h3>
             <h3>Published on {videoList[videoID].timeAgo}</h3>
             <button onClick={handleLike}>Like ({videoList[videoID].likes})</button>
@@ -114,7 +120,7 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
       </div>
       <div className="video-list-container">
         <div className="video-list">
-          <VideoList videoList={videoList} searchQuery={searchQuery}/>
+          <VideoList videoList={videoList} searchQuery={searchQuery} users={users}/>
         </div>
       </div>
     </div>

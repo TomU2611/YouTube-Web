@@ -23,7 +23,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage users={users} setConnection={setConnection} darkMode={darkMode}/>} />
-        <Route path="/register" element={<RegisterPage users={users} setUsers={setUsers} />} />
+        <Route path="/register" element={<RegisterPage users={users} setUsers={setUsers} setConnection={setConnection} />} />
         <Route path="/*" element={<Home connection={connection} setConnection={setConnection} users={users} videoList={videoList} setVideos={setVideos} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}/>
       </Routes>
     

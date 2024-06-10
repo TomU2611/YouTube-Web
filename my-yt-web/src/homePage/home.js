@@ -23,7 +23,7 @@ function Home({ connection, setConnection , users, darkMode, videoList, setVideo
       <Routes>
         <Route path="/" element={
           <div>
-            <VideoList videoList={videoList} searchQuery={searchQuery}/>
+            <VideoList videoList={videoList} searchQuery={searchQuery} users={users}/>
             <div className="container-fluid">
               <div className="row">
                 <div className="col-sm-3">

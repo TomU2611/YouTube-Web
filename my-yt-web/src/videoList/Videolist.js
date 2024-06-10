@@ -3,7 +3,7 @@ import './VideoList.css';
 import { Link } from "react-router-dom";
 
 
-function VideoList({videoList, searchQuery}) {
+function VideoList({videoList, searchQuery, users}) {
     
     
     
@@ -12,7 +12,7 @@ function VideoList({videoList, searchQuery}) {
         <div className="VideoList">
             {videoList.map((video, key) =>
                 (  video.title.toLowerCase().includes(searchQuery.toLowerCase())  ) &&
-                <Link key={key} className="vid" to={`/watch/${video.index}` } ><VideoItem  {...video}></VideoItem></Link>
+                <Link key={key} className="vid" to={`/watch/${video.index}` } ><VideoItem  {...video} users={users} ></VideoItem></Link>
                 
             )}
         </div>

@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './RegisterPage.css';
 import { Link, useNavigate } from 'react-router-dom';
 
-function RegisterPage({users, setUsers}){
+function RegisterPage({users, setUsers, setConnection}){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [displayName, setDisplayName] = useState('');
@@ -63,7 +63,8 @@ function RegisterPage({users, setUsers}){
         
         setUsers([...users, newUser]);
         setMessage('Account Created');
-        navigate('/login');
+        setConnection({ isConnected: true, user: username });
+        navigate('/');
     };
 
     const handleSubmit = () => {

@@ -43,7 +43,7 @@ function TopBar({connection, setConnection , users, setSearchQuery} ) {
           )}
           {connection.isConnected &&(
             <div>
-              <div onClick={handleLogout} className="profile-picture">
+              <div onClick={handleLogout} className="profile-picture1">
                 <h4>sign out</h4>
                 <img className="userImg" src={profilePicture} />
                 
