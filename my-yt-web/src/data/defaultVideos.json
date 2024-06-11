@@ -11,7 +11,9 @@
         "likes": 2,
         "dislikes": 0,
         "commentsNum": 0,
-        "comments": []
+        "comments": [],
+        "likedBy" : [],
+        "dislikedBy" : []
     },
     {
         "index": 1,
@@ -25,7 +27,9 @@
         "likes": 0,
         "dislikes": 3,
         "commentsNum": 0,
-        "comments": []
+        "comments": [],
+        "likedBy" : [],
+        "dislikedBy" : []
     },
     {
         "index": 2,
@@ -39,7 +43,9 @@
         "likes": 0,
         "dislikes": 0,
         "commentsNum": 0,
-        "comments": []
+        "comments": [],
+        "likedBy" : [],
+        "dislikedBy" : []
     },
     {
         "index": 3,
@@ -53,7 +59,9 @@
         "likes": 0,
         "dislikes": 0,
         "commentsNum": 0,
-        "comments": []
+        "comments": [],
+        "likedBy" : [],
+        "dislikedBy" : []
     },
     {
         "index": 4,
@@ -67,7 +75,9 @@
         "likes": 0,
         "dislikes": 0,
         "commentsNum": 0,
-        "comments": []
+        "comments": [],
+        "likedBy" : [],
+        "dislikedBy" : []
     },
     {
         "index": 5,
@@ -81,7 +91,9 @@
         "likes": 0,
         "dislikes": 0,
         "commentsNum": 0,
-        "comments": []
+        "comments": [],
+        "likedBy" : [],
+        "dislikedBy" : []
     },
     {
         "index": 6,
@@ -95,7 +107,9 @@
         "likes": 0,
         "dislikes": 0,
         "commentsNum": 0,
-        "comments": []
+        "comments": [],
+        "likedBy" : [],
+        "dislikedBy" : []
     },
     {
         "index": 7,
@@ -109,7 +123,9 @@
         "likes": 0,
         "dislikes": 0,
         "commentsNum": 0,
-        "comments": []
+        "comments": [],
+        "likedBy" : [],
+        "dislikedBy" : []
     },
     {
         "index": 8,
@@ -123,7 +139,9 @@
         "likes": 0,
         "dislikes": 0,
         "commentsNum": 0,
-        "comments": []
+        "comments": [],
+        "likedBy" : [],
+        "dislikedBy" : []
     },
     {
         "index": 9,
@@ -137,7 +155,9 @@
         "likes": 0,
         "dislikes": 0,
         "commentsNum": 0,
-        "comments": []
+        "comments": [],
+        "likedBy" : [],
+        "dislikedBy" : []
     },
     {
         "index": 10,
@@ -151,6 +171,8 @@
         "likes": 0,
         "dislikes": 0,
         "commentsNum": 0,
-        "comments": []
+        "comments": [],
+        "likedBy" : [],
+        "dislikedBy" : []
     }
 ]

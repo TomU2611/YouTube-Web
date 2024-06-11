@@ -15,7 +15,23 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
   const [subscribers, setSubscribers] = useState(0);
   
   const [commentText, setCommentText] = useState('');
+  const [isLiked, setIsLiked] = useState(false);
+  const [isDisliked, setIsDisliked] = useState(false);
   
+  useEffect(() => {
+    if (connection.isConnected && videoList[videoID].likedBy.includes(connection.user)) {
+      setIsLiked(true);
+      
+    }else{
+      setIsLiked(false);
+     
+    }
+    if (connection.isConnected && videoList[videoID].dislikedBy.includes(connection.user)) {
+      setIsDisliked(true);
+    }else{
+      setIsDisliked(false);
+    }
+  }, [connection.isConnected, videoPath, videoID, videoList[videoID].likedBy,videoList[videoID].dislikedBy,videoList]);
   
   useEffect(() => {
     setVideoPath(videoList[videoID].path);
@@ -29,13 +45,44 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
 
   
   const handleLike = () => {
+    if (!connection.isConnected) {
+      alert('You need to be connected to like a video');
+      return;
+    }
+    if (isLiked) {
+      setIsLiked(false);
+      const newVideos = [...videoList];
+      newVideos[videoID].likes = newVideos[videoID].likes - 1;
+      newVideos[videoID].likedBy = newVideos[videoID].likedBy.filter(user => user != connection.user);
+      setVideos(newVideos);
+
+
+      return;
+    }
     const newVideos = [...videoList];
+    newVideos[videoID].likedBy.push(connection.user);
     newVideos[videoID].likes = newVideos[videoID].likes + 1;
     setVideos(newVideos);
   };
 
+
   const handleDislike = () => {
+    if (!connection.isConnected) {
+      alert('You need to be connected to dislike a video');
+      return;
+    }
+    if (isDisliked) {
+      setIsDisliked(false);
+      const newVideos = [...videoList];
+      newVideos[videoID].dislikes = newVideos[videoID].dislikes - 1;
+      newVideos[videoID].dislikedBy = newVideos[videoID].dislikedBy.filter(user => user != connection.user);
+      setVideos(newVideos);
+
+
+      return;
+    }
     const newVideos = [...videoList];
+    newVideos[videoID].dislikedBy.push(connection.user);
     newVideos[videoID].dislikes = newVideos[videoID].dislikes + 1;
     setVideos(newVideos);
   };
@@ -53,6 +100,11 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
   };
 
   const handleComment = () => {
+    if (!connection.isConnected) {
+      alert('You need to be connected to comment a video');
+      setCommentText('');
+      return;
+    }
     const newVideos = [...videoList];
     if (commentText.trim() !== '' && connection.isConnected) {
       const newComment = {
@@ -74,9 +126,10 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
         return video;
       });
       setVideos(updatedVIdeoList);
-      setCommentText('');
+      
       
     }
+    setCommentText('');
   };
 
   return (
