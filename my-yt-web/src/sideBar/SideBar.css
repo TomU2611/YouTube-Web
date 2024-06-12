@@ -10,6 +10,10 @@
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     height: 100%;
   }
+  #dark .sidebar {
+    
+    background-color: #3e163e48;
+  }
   
   .list-group-item {
     font-size: 1.2rem;

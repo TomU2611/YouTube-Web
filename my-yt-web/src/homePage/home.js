@@ -13,13 +13,13 @@ import { useState } from 'react';
 
 
 
-function Home({ connection, setConnection , users, darkMode, videoList, setVideos, searchQuery, setSearchQuery}) {
+function Home({theme,setTheme, connection, setConnection , users, darkMode, videoList, setVideos, searchQuery, setSearchQuery}) {
   
 
 
   return (
-    <div className={`Home ${darkMode ? 'dark-mode' : ''}`}>
-      <TopBar connection={connection} setConnection={setConnection} users={users} setSearchQuery={setSearchQuery} />
+    <div  className={`Home ${darkMode ? 'dark-mode' : ''}`}>
+      <TopBar theme={theme} setTheme={setTheme} connection={connection} setConnection={setConnection} users={users} setSearchQuery={setSearchQuery} />
       <Routes>
         <Route path="/" element={
           <div>

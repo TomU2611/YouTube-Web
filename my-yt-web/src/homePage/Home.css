@@ -73,6 +73,7 @@
   margin-top: 0px; /* Adjust margin-top to move VideoList further to the top */
 }
 
+
 /* Adjust column size for larger screens */
 @media (min-width: 992px) {
   .col-lg-8 {
@@ -83,4 +84,8 @@
     width: 20%; /* Adjust width as needed */
     margin-left: 0; /* Adjust margin-left to move VideoList further to the left */
   }
+}
+
+#dark{
+  background-color: #3e163e48;
 }

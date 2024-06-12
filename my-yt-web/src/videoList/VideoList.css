@@ -13,3 +13,11 @@
     padding-top: 100px;
     padding-left: 250px;
 }
+
+#dark .VideoList > .vid{
+    
+    color: black;
+}
+#dark .VideoList > .vid:hover{
+    background-color: #bb8d8d;
+}

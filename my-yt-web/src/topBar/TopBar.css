@@ -14,6 +14,10 @@
   width: 100%;
   z-index: 1000; /* Ensure it stays on top of other elements */
 }
+#dark .topbar{
+ 
+  background-color: #775377;
+}
 
 .topbar-right {
    
@@ -43,6 +47,7 @@
   margin-top: -13px; /* Adjust this value to move the logo higher */
 }
 
+
 .topbar-center {
   display: flex;
   align-items: center;
@@ -56,13 +61,26 @@
   border: 1px solid #ccc;
   border-radius: 20px 0 0 20px; /* Rounded corners for left side */
 }
-
+#dark .search-input{
+  background-color: #bab0ba48;
+  
+  
+ 
+  
+}
+#dark .search-input::placeholder{
+  color: #000000;
+}
 .search-button {
   padding: 8px 15px; /* Adjust padding for better appearance */
   background-color: #f0f0f0;
   border: 1px solid #ccc;
   border-radius: 0 20px 20px 0; /* Rounded corners for right side */
   cursor: pointer;
+}
+#dark .search-button{
+  background-color: #bab0ba48;
+  
 }
 
 .topbar-right {
@@ -74,28 +92,10 @@
   height: -2px;
 }
 
-/* Dark mode styles */
-.topbar.dark-mode {
-  background-color: #333333;
-  color: #ffffff;
-}
 
-.dark-mode .buttonSign {
-  background-color: #555;
-  color: #fff;
-  border-color: #555;
-}
 
-.dark-mode .search-input {
-  background-color: #555;
-  color: #fff;
-  border-color: #777;
-}
 
-.dark-mode .search-button {
-  background-color: #777;
-  border-color: #777;
-}
+
 .profile-picture1  {
   
   border-radius: 50%;

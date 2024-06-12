@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dropdown.css';
 import { useNavigate } from 'react-router-dom';
-const Dropdown = ({ toggleDarkMode, connection,setConnection }) => {
+const Dropdown = ({ theme,setTheme,toggleDarkMode, connection,setConnection }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const handleRedirection = (path) => {
@@ -11,12 +11,14 @@ const Dropdown = ({ toggleDarkMode, connection,setConnection }) => {
   const toggleDropdown = () => {
     setIsOpen(prevIsOpen => !prevIsOpen);
   };
-  function handleLogout() {
+  const handleLogout= () => {
     setConnection({ isConnected: false, user: '' });
     handleRedirection("/login");
   }
  
-
+  const handleDarkMode= ()=> {
+    setTheme((theme === "light" ? "dark" : "light"));
+  }
   return (
     <div className={`dropdown ${isOpen ? 'open' : ''}`}>
       <button className="btn" type="button" onClick={toggleDropdown}>
@@ -64,7 +66,7 @@ const Dropdown = ({ toggleDarkMode, connection,setConnection }) => {
             </li>
            )}
             <li className="list-group-item d-flex justify-content align-items-center">
-              <button onClick={toggleDarkMode} className="btn" style={{ background: 'none', border: 'none' }}>
+              <button onClick={handleDarkMode} className="btn" style={{ background: 'none', border: 'none' }}>
                 <i className="bi bi-cloud-moon"></i>
                 <span className="w-70 m-2">Dark mode</span>
               </button>

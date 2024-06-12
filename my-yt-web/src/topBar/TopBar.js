@@ -8,7 +8,7 @@ import './TopBar.css';
 import { useNavigate } from 'react-router-dom';
 //import searchIcon from './logo.png';
 
-function TopBar({connection, setConnection , users, setSearchQuery} ) {
+function TopBar({theme, setTheme,connection, setConnection , users, setSearchQuery} ) {
   const [profilePicture, setProfilePicture] = useState(null);
   const searchBox = useRef(null);
   const navigate = useNavigate();
@@ -70,7 +70,7 @@ function TopBar({connection, setConnection , users, setSearchQuery} ) {
         </div>
 
       </div>
-      <Dropdown connection={connection} setConnection={setConnection} />
+      <Dropdown theme={theme} setTheme={setTheme} connection={connection} setConnection={setConnection} />
     </div>
   );
 };

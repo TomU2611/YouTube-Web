@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, createContext } from 'react';
 import Home from './homePage/Home'; 
 import './App.css';
 
@@ -15,7 +15,7 @@ function App() {
   
   
   const [connection, setConnection] = useState({ isConnected: false, user: '' });
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
 
   const toggleTheme = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
@@ -23,15 +23,19 @@ function App() {
   
 
   return (
+    <div id={theme} className='app-div'>
     <BrowserRouter>
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
-        <Routes>
-          <Route path="/login" element={<LoginPage users={users} setConnection={setConnection}/>} />
+        
+        <Routes >
+          <Route path="/login" element={<LoginPage  users={users} setConnection={setConnection}/>} />
           <Route path="/register" element={<RegisterPage users={users} setUsers={setUsers} setConnection={setConnection} />} />
-          <Route path="/*" element={<Home connection={connection} setConnection={setConnection} users={users} videoList={videoList} setVideos={setVideos} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}/>
+          <Route path="/*" element={<Home theme={theme} setTheme={setTheme}  connection={connection} setConnection={setConnection} users={users} videoList={videoList} setVideos={setVideos} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}/>
         </Routes>
+        
       </ThemeContext.Provider>
     </BrowserRouter>
+    </div>
   )
 }
 /*

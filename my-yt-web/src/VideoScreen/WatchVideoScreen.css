@@ -30,6 +30,7 @@
   margin-left: auto; /* Move the video info section slightly to the right */
 }
 
+
 .comments-section {
   margin-top: 20px;
   width: 95%; /* Set width to 95% */
@@ -64,6 +65,9 @@
   margin-bottom: 30px; /* Increase margin bottom for separation */
   font-size: 20px; /* Increase font size for better readability */
 }
+#dark .comments-section input {
+  background-color: #3e163e00; /* Set dark background color */
+}
 
 .comments-section button {
   padding: 15px 30px; /* Adjust padding */
@@ -72,6 +76,11 @@
   border-radius: 30px; /* Make buttons more circular */
   background-color: #f9f9f9; /* Set background color */
   margin-right: 40px; /* Add spacing between buttons */
+}
+#dark .comments-section button {
+  background-color: #5b132931;
+  color: black;
+  border-color: #000000;
 }
 
 /* Update the styles for like, dislike, share, and download buttons */
@@ -83,6 +92,11 @@
   background-color: #f9f9f9; /* Set background color */
   margin-right: 20px; /* Add spacing between buttons */
   margin-left: 0px; /* Move buttons a little to the left */
+}
+#dark .video-info button {
+  background-color: #5b132931;
+  color: black;
+  border-color: #000000;
 }
 
 /* Update the styles for like button */
@@ -123,12 +137,16 @@
   border: 2px solid black; /* Add black border */
   
 }
+#dark .comments-section {
+  background-color: #3e163e48; /* Set dark background color */
+}
 
 .comment {
   border: 1px solid #ccc;
   padding: 10px;
   margin-top: 10px;
 }
+
 
 .comment img {
   width: 40px;
@@ -145,6 +163,9 @@
   border: 2px solid black; /* Add black border */
   margin-left: -53px; /* Move the container a little to the left */
   width: calc(100% - 0px); /* Adjust width if necessary */
+}
+#dark .button-container {
+  background-color: #3e163e48; /* Set dark background color */
 }
 
 
@@ -163,4 +184,7 @@
 .buttuonPressed {
   background-color: #61525270 !important;  /* Set background color */
  
+}
+#dark .buttuonPressed{
+  background-color: #3e163e84 !important; /* Set dark background color */
 }
