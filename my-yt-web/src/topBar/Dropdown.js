@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dropdown.css';
 import { useNavigate } from 'react-router-dom';
-const Dropdown = ({ toggleDarkMode, connection }) => {
+const Dropdown = ({ toggleDarkMode, connection,setConnection }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const handleRedirection = (path) => {
@@ -11,7 +11,10 @@ const Dropdown = ({ toggleDarkMode, connection }) => {
   const toggleDropdown = () => {
     setIsOpen(prevIsOpen => !prevIsOpen);
   };
-
+  function handleLogout() {
+    setConnection({ isConnected: false, user: '' });
+    handleRedirection("/login");
+  }
  
 
   return (
@@ -40,7 +43,7 @@ const Dropdown = ({ toggleDarkMode, connection }) => {
               </li>
             )}
             {connection.isConnected && (
-              <li className="list-group-item d-flex justify-content align-items-center">
+              <li onClick={handleLogout} className="list-group-item d-flex justify-content align-items-center">
                 <i className="bi bi-door-closed"></i>
                 <span className="w-70 m-2">Sign Out</span>
               </li>

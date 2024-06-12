@@ -63,6 +63,16 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
     newVideos[videoID].likedBy.push(connection.user);
     newVideos[videoID].likes = newVideos[videoID].likes + 1;
     setVideos(newVideos);
+    if (isDisliked) {
+      setIsDisliked(false);
+      const newVideos = [...videoList];
+      newVideos[videoID].dislikes = newVideos[videoID].dislikes - 1;
+      newVideos[videoID].dislikedBy = newVideos[videoID].dislikedBy.filter(user => user != connection.user);
+      setVideos(newVideos);
+
+
+      return;
+    }
   };
 
 
@@ -85,6 +95,16 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
     newVideos[videoID].dislikedBy.push(connection.user);
     newVideos[videoID].dislikes = newVideos[videoID].dislikes + 1;
     setVideos(newVideos);
+    if (isLiked) {
+      setIsLiked(false);
+      const newVideos = [...videoList];
+      newVideos[videoID].likes = newVideos[videoID].likes - 1;
+      newVideos[videoID].likedBy = newVideos[videoID].likedBy.filter(user => user != connection.user);
+      setVideos(newVideos);
+
+
+      return;
+    }
   };
 
   const handleShare = () => {
@@ -144,8 +164,8 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
             <h3>By: {videoList[videoID].authorDisplayName}</h3>
             <h3>{videoList[videoID].views} views</h3>
             <h3>Published on {videoList[videoID].timeAgo}</h3>
-            <button onClick={handleLike}>Like ({videoList[videoID].likes})</button>
-            <button onClick={handleDislike}>Dislike ({videoList[videoID].dislikes})</button>
+            <button className={isLiked ? 'buttuonPressed' : ''} onClick={handleLike}>Like ({videoList[videoID].likes})</button>
+            <button className={isDisliked ? 'buttuonPressed' : ''} onClick={handleDislike}>Dislike ({videoList[videoID].dislikes})</button>
             <button onClick={handleShare}>Share ({shares})</button>
             <button onClick={handleDownload}>Download ({downloads})</button>
             <button onClick={handleSubscribers}>Subscribers ({subscribers})</button>

@@ -5,11 +5,13 @@ import logoImg from './logo.png';
 import { Link } from 'react-router-dom';
 import Dropdown  from './Dropdown';
 import './TopBar.css';
+import { useNavigate } from 'react-router-dom';
 //import searchIcon from './logo.png';
 
 function TopBar({connection, setConnection , users, setSearchQuery} ) {
   const [profilePicture, setProfilePicture] = useState(null);
   const searchBox = useRef(null);
+  const navigate = useNavigate();
   const search = function(){
     setSearchQuery(searchBox.current.value);
     console.log(searchBox.current.value);
@@ -25,6 +27,7 @@ function TopBar({connection, setConnection , users, setSearchQuery} ) {
   }, [connection, users]);
   function handleLogout() {
     setConnection({ isConnected: false, user: '' });
+    navigate("/login");
   }
   console.log(connection.isConnected);
   console.log(profilePicture);
@@ -67,7 +70,7 @@ function TopBar({connection, setConnection , users, setSearchQuery} ) {
         </div>
 
       </div>
-      <Dropdown connection={connection} />
+      <Dropdown connection={connection} setConnection={setConnection} />
     </div>
   );
 };
