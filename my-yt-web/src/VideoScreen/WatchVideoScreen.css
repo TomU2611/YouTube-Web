@@ -64,6 +64,8 @@
   padding: 20px; /* Increase padding */
   margin-bottom: 30px; /* Increase margin bottom for separation */
   font-size: 20px; /* Increase font size for better readability */
+  border-radius: 20px;
+  
 }
 #dark .comments-section input {
   background-color: #3e163e00; /* Set dark background color */
@@ -135,6 +137,7 @@
   width: 100%;
   margin-left: -50px; /* Move comments container further to the left */
   border: 2px solid black; /* Add black border */
+  background-color: #f0f0f0;
   
 }
 #dark .comments-section {
@@ -146,6 +149,12 @@
   padding: 10px;
   margin-top: 10px;
 }
+.comment .deleteCommButton {
+  background-color: #f9f9f9;
+  float: right; /* Add float property to move the button to the right */
+  padding: 5px;
+}
+
 
 
 .comment img {
@@ -170,14 +179,14 @@
 
 
 .video-list-container {
-  
-  padding: 15px;
-  
+  flex:auto;
+  padding: 20px;
+  margin: 1px;
   overflow-y: scroll;
   max-height: 1500px;
-  margin-left: -150px; /* Add left margin to move the container to the right */
+  /* Add left margin to move the container to the right */
    /* Set a fixed height for the video list */
-  width: 40%; /* Adjust width as needed */
+  width: 20%; /* Adjust width as needed */
  
   
 }

@@ -65,8 +65,8 @@ const Dropdown = ({ theme,setTheme,toggleDarkMode, connection,setConnection }) =
               
             </li>
            )}
-            <li className="list-group-item d-flex justify-content align-items-center">
-              <button onClick={handleDarkMode} className="btn" style={{ background: 'none', border: 'none' }}>
+            <li onClick={handleDarkMode} className="list-group-item d-flex justify-content align-items-center">
+              <button  className="btn" style={{ background: 'none', border: 'none' }}>
                 <i className="bi bi-cloud-moon"></i>
                 <span className="w-70 m-2">Dark mode</span>
               </button>

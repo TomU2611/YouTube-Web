@@ -1,4 +1,4 @@
-import AddedVideoItem from './addVideoItem/AddVideoItem';
+import AddVideoItem from './addVideoItem/AddVideoItem';
 import './AddedVideoList.css';
 
 function AddedVideoList({ videoList, setVideos, users, connection }) {
@@ -20,7 +20,7 @@ function AddedVideoList({ videoList, setVideos, users, connection }) {
                 <div>
                     {videoList.map((video, index) => (
                         video.author == connection.user &&
-                        <AddedVideoItem key={index} videoList={videoList} index={index} deleteVideo={deleteVideo} />
+                        <AddVideoItem key={index} videoList={videoList} index={index} deleteVideo={deleteVideo} />
                     ))}
                 </div>
             ) : (

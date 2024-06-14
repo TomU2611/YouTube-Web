@@ -29,8 +29,7 @@ function TopBar({theme, setTheme,connection, setConnection , users, setSearchQue
     setConnection({ isConnected: false, user: '' });
     navigate("/login");
   }
-  console.log(connection.isConnected);
-  console.log(profilePicture);
+  
   return (
     <div>
       <div className="topbar">

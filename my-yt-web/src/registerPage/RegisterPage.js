@@ -31,13 +31,19 @@ function RegisterPage({users, setUsers, setConnection}){
     const handleProfilePictureChange = (e) => {
         setProfilePicture(e.target.files[0]);
     }
+    const getProfilePic = () => {
+        if(!profilePicture){
+            return '/photos/guest.png';
+        }
+        return URL.createObjectURL(profilePicture);
+    }
 
     const validateInputs = () => {
         // Reset validation state
         
 
         // Check if all fields are filled
-        if (!username || !password || !displayName || !rePassword || !profilePicture) {
+        if (!username || !password || !displayName || !rePassword) {
             setMessage('Invalid input!');
             return;
         }
@@ -47,6 +53,7 @@ function RegisterPage({users, setUsers, setConnection}){
             setMessage('Invalid input!');
             return;
         }
+        
 
         // Check password complexity
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -54,11 +61,12 @@ function RegisterPage({users, setUsers, setConnection}){
             setMessage('Invalid input!');
             return;
         }
+        
         const newUser = {
             username: username,
             password: password,
             displayName: displayName,
-            profilePicture: URL.createObjectURL(profilePicture)
+            profilePicture: getProfilePic()
         };
         
         setUsers([...users, newUser]);

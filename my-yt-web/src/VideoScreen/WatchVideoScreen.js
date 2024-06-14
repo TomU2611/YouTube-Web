@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import defaultAvatar from './default-avatar.png'; // Assuming there's a default avatar image
+
 import { useParams } from 'react-router-dom';
 
 import VideoList from '../videoList/Videolist';
@@ -121,7 +121,7 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
 
   const handleComment = () => {
     if (!connection.isConnected) {
-      alert('You need to be connected to comment a video');
+      alert('You need to be connected to comment on a video');
       setCommentText('');
       return;
     }
@@ -131,7 +131,7 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
         commentID: videoList[videoID].commentsNum,
         author: users.find(user => user.username === connection.user).displayName,
         text: commentText,
-        avatar: users.find(user => user.username === connection.user).profilePicture || defaultAvatar
+        avatar: users.find(user => user.username === connection.user).profilePicture
       };
 
       const updatedVIdeoList = videoList.map(video => {
@@ -151,6 +151,12 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
     }
     setCommentText('');
   };
+  const deleteComment = (index) => {
+    const newVideos = [...videoList];
+    newVideos[videoID].comments = newVideos[videoID].comments.filter((_, i) => i !== index);
+    newVideos[videoID].commentsNum = newVideos[videoID].commentsNum - 1;
+    setVideos(newVideos);
+  }
 
   return (
     <div className='big-container'>
@@ -183,9 +189,10 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
               <button onClick={handleComment}>Comment</button>
             </div>
             {videoList[videoID].comments.map((comment, index) => (
-              <div key={index} className="comment">
+              <div key={index} className="comment"> 
                 <img src={comment.avatar} alt="" />
                 <span>{comment.author}</span>: {comment.text}
+                <button className="deleteCommButton" onClick={() => deleteComment(index)} >X</button>
               </div>
             ))}
           </div>
