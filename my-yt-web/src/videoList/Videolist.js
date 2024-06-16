@@ -1,25 +1,24 @@
 import VideoItem from "./videoItem/VideoItem";
-import videos from "../data/defaultVideos.json";
-import { useState } from 'react';
 import './VideoList.css';
+import { Link } from "react-router-dom";
 
-function VideoList({ onVideoItemClick }) {
-    const [videosList, setVideosList] = useState(videos);
-    console.log(videosList)
-    var i = 1
-    console.log(i)
-    i+=1
-    console.log(i)
+
+function VideoList({videoList, searchQuery, users}) {
+    
+    
+    
 
     return (
         <div className="VideoList">
-        {videosList.map((video) =>
-            <VideoItem key={video.id} {...video} onClick={() => onVideoItemClick(video)} />
-        )}
-    </div>
+            {videoList.map((video, key) =>
+                (  video.title.toLowerCase().includes(searchQuery.toLowerCase())  ) &&
+                <Link key={key} className="vid" to={`/watch/${video.index}` } ><VideoItem  {...video} users={users} ></VideoItem></Link>
+                
+            )}
+        </div>
 
-        
-      );
+
+    );
 }
 
 export default VideoList;

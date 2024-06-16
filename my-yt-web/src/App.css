@@ -1,21 +1,11 @@
 /* App.css */
-.dark-mode {
-    background-color: #1c1c1c; /* Dark background color */
-    color: #fff; /* Light text color */
-  }
-  
-  /* TopBar.css */
-  .topbar.dark-mode {
-    background-color: #000; /* Dark background color for TopBar */
-  }
-  
-  /* Dropdown.css */
-  .dropdown.dark-mode {
-    background-color: #000; /* Dark background color for Dropdown */
-  }
-  
-  /* VideoList.css */
-  .VideoList.dark-mode {
-    background-color: #000; /* Dark background color for VideoList */
-  }
-  
+#dark{
+  background-color: #3e163e48;
+}
+.app-div{
+  display: flex;
+  justify-content: center;
+}
+#dark .app-div{
+  background-color: #3e163e48;
+}

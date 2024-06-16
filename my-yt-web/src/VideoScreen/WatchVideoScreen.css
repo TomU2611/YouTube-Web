@@ -1,6 +1,12 @@
 /* src/WatchVideo.css */
-
+.big-container {
+  display: flex;
+  flex-direction: row;
+  
+  
+}
 .watch-video-container {
+  max-width: 60%; /* Adjust width as needed */
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* Align items to the start (left) */
@@ -23,6 +29,7 @@
   font-size: 22px; /* Increase the font size for better readability */
   margin-left: auto; /* Move the video info section slightly to the right */
 }
+
 
 .comments-section {
   margin-top: 20px;
@@ -57,6 +64,11 @@
   padding: 20px; /* Increase padding */
   margin-bottom: 30px; /* Increase margin bottom for separation */
   font-size: 20px; /* Increase font size for better readability */
+  border-radius: 20px;
+  
+}
+#dark .comments-section input {
+  background-color: #3e163e00; /* Set dark background color */
 }
 
 .comments-section button {
@@ -66,6 +78,11 @@
   border-radius: 30px; /* Make buttons more circular */
   background-color: #f9f9f9; /* Set background color */
   margin-right: 40px; /* Add spacing between buttons */
+}
+#dark .comments-section button {
+  background-color: #5b132931;
+  color: black;
+  border-color: #000000;
 }
 
 /* Update the styles for like, dislike, share, and download buttons */
@@ -77,6 +94,11 @@
   background-color: #f9f9f9; /* Set background color */
   margin-right: 20px; /* Add spacing between buttons */
   margin-left: 0px; /* Move buttons a little to the left */
+}
+#dark .video-info button {
+  background-color: #5b132931;
+  color: black;
+  border-color: #000000;
 }
 
 /* Update the styles for like button */
@@ -115,7 +137,11 @@
   width: 100%;
   margin-left: -50px; /* Move comments container further to the left */
   border: 2px solid black; /* Add black border */
+  background-color: #f0f0f0;
   
+}
+#dark .comments-section {
+  background-color: #3e163e48; /* Set dark background color */
 }
 
 .comment {
@@ -123,6 +149,13 @@
   padding: 10px;
   margin-top: 10px;
 }
+.comment .deleteCommButton {
+  background-color: #f9f9f9;
+  float: right; /* Add float property to move the button to the right */
+  padding: 5px;
+}
+
+
 
 .comment img {
   width: 40px;
@@ -140,5 +173,27 @@
   margin-left: -53px; /* Move the container a little to the left */
   width: calc(100% - 0px); /* Adjust width if necessary */
 }
+#dark .button-container {
+  background-color: #3e163e48; /* Set dark background color */
+}
 
 
+.video-list-container {
+  flex:auto;
+  padding: 20px;
+  margin: 1px;
+  overflow-y: scroll;
+  max-height: 1500px;
+  /* Add left margin to move the container to the right */
+   /* Set a fixed height for the video list */
+  width: 20%; /* Adjust width as needed */
+ 
+  
+}
+.buttuonPressed {
+  background-color: #61525270 !important;  /* Set background color */
+ 
+}
+#dark .buttuonPressed{
+  background-color: #3e163e84 !important; /* Set dark background color */
+}

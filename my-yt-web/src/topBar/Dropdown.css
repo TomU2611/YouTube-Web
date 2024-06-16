@@ -20,3 +20,17 @@
   top: 120px; /* Adjust based on the height of your dropdown */
   z-index: 1000;
 }
+#dark .offcanvas {
+    
+  background-color: #775377;
+  
+}
+
+li{
+  cursor: pointer;
+}
+#dark li:hover{ 
+    
+  background-color: #bb8d8d;
+  
+}

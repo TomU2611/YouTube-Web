@@ -3,16 +3,16 @@ import React, { useState } from 'react';
 import AddedVideoList from './addedVideoList/AddedVideoList';
 import AddVideoForm from './addVideoForm/AddVideoForm';
 
-function AddVideo() {
-  const [videos, setVideosList] = useState([]);
+function AddVideo( {connection, users, videoList, setVideos}) {
+ 
 
   return (
     <div className="add-video-container">
       <div className="add-video-form-container">
-        <AddVideoForm setVideosList={setVideosList} />
+        <AddVideoForm videoList={videoList} setVideos={setVideos} users={users} connection={connection} />
       </div>
       <div className="added-video-list-container">
-        <AddedVideoList videos={videos} />
+        <AddedVideoList videoList={videoList} setVideos={setVideos} users={users} connection={connection} />
       </div>
     </div>
   );

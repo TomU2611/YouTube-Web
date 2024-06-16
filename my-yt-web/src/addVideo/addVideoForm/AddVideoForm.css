@@ -5,6 +5,9 @@
   width: 400px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
+#dark .add-video-form {
+  background-color: #3e163e38; /* Dark background for better contrast */
+}
 
 .add-video-form label {
   display: block;
@@ -19,6 +22,9 @@
   margin-bottom: 12px; /* Space between inputs */
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+#dark .add-video-form input[type="text"]{
+  background-color: #3e163e00; /* Dark background for better contrast */
 }
 
 .add-video-form button[type="submit"] {

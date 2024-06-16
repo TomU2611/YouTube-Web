@@ -6,9 +6,13 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+    width: 800vh;
     background-color: #f9f9f9;
     padding: 20px;
     position: relative;
+}
+#dark .login-container{
+    background-color: #430b4311;
 }
 
 .youtube-icon {
@@ -31,6 +35,9 @@
     border-radius: 8px;
     border-color: black;
 }
+#dark .login-form{
+    background-color: #3e163e49;
+}
 
 .login-form h2 {
     margin-bottom: 20px;
@@ -48,6 +55,10 @@
     font-weight: bold;
     color: #555;
 }
+#dark .login-form .form-group span{
+    background-color: #8f468f00;
+    color: black;
+}
 
 .login-form .form-group input {
     width: 95%;
@@ -56,7 +67,10 @@
     border-radius: 4px;
     font-size: 14px;
 }
-
+#dark .login-form .form-group input{
+    background-color: #13061300;
+    color: black;
+}
 .login-form .form-buttons {
     display: flex;
     justify-content: space-between;
@@ -88,4 +102,15 @@
 
 .login-form .form-buttons button[type="submit"]:hover {
     background-color: #218838;
+}
+.invalid-input-message {
+    color: red;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.valid-input-message {
+    color: green;
+    padding: 10px;
+    font-size: 20px;
 }
