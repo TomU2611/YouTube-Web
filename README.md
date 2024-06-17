@@ -21,7 +21,7 @@ Afterward, Mark and Itay continued the Android project while Tom worked on conne
 GitHub rip:
 https://github.com/TomU2611/YouTube-Web.git
 
-Gira:
+Jira:
 https://itayzahor1.atlassian.net/jira/software/projects/SCRUM/pages
 
 
