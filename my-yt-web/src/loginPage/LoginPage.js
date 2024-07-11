@@ -18,25 +18,54 @@ function LoginPage({users, setConnection}){
         setPassword(e.target.value);
     };
 
-    const handleSubmit = () => {
-        // Check if user exists
-        const user = users.find(user => user.username === username);
-        if (!user) {
-            setMessage('User not found!');
-            return;
-        }
+    const handleSubmit = async () => {
+        try {
+            const response = await fetch('http://localhost:12345/api/tokens', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
 
-        // Check if password is correct
-        if (user.password !== password) {
-            setMessage('Wrong password!');
-            return;
+            if (!response.ok) {
+                const errorMessage = await response.text();
+                throw new Error(errorMessage);
+            }
+
+            const data = await response.json();
+            const statusNum = response.status;
+            const profilePicture = data.profilePicture;
+            const token = data.token;
+            const userId = data.userId;
+            
+            //const token = jwt.sign({ id: userId }, "key");
+            //res.status(200).json({ userId, token });
+            console.log(token);
+            // Store token in localStorage
+            sessionStorage.setItem('profilePicture', profilePicture);
+            sessionStorage.setItem('token', token);
+            sessionStorage.setItem('userId', userId);
+            sessionStorage.setItem('username', username);
+            /*
+            // Decode token to get user info if needed
+            const decodedToken = jwt_decode(token);
+            const { id: userId } = decodedToken;
+            */
+
+            // Update state or setConnection to indicate user is logged in
+            setConnection({ isConnected: true, user: username, id : userId});
+
+            // Redirect to home page
+            navigate('/');
+
+        } catch (error) {
+            console.error(error);
+            console.log('error fetching token');
+            
         }
-        setConnection({ isConnected: true, user: username });
-        // Redirect to home page
-        setMessage('Login successful!');
-        // Redirect to home page without refreshing
-        navigate('/');
-    };
+    }
+    
 
    
 

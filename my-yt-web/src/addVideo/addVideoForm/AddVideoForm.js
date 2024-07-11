@@ -5,8 +5,9 @@ function AddVideoForm({ videoList, setVideos, users, connection}) {
   const [title, setTitle] = useState('');
   const [photo, setPhoto] = useState(null);
   const [video, setVideo] = useState(null);
-
- 
+  const token = sessionStorage.getItem('token');
+  const userId = sessionStorage.getItem('userId');
+  const username = sessionStorage.getItem('username');
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
@@ -19,10 +20,51 @@ function AddVideoForm({ videoList, setVideos, users, connection}) {
     setVideo(e.target.files[0]);
   };
 
+  const uploadVideo = async (data) => {
+    console.log(data);
+    try {
+
+        const response = await fetch(`http://localhost:12345/api/users/${userId}/videos`, {
+            method: 'POST',
+            headers: {
+                "authorization": `Bearer ${token}`
+               
+            },
+            body: data
+
+        })
+        
+        if (!response.ok) {
+          throw new Error('Failed to upload video');
+        }
+  
+        
+
+    } catch (error) {
+        // handle error
+        console.log('error uploading video');
+        console.log(error);
+    }
+    
+
+  };
+  const getVideoPic = async () => {
+    
+    return await convertToBase64(photo);
+  }
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
 
 
 
-  const handleSubmit = (e) => {
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !photo || !video) {
       alert('Please fill out all fields and upload both photo and video.');
@@ -33,23 +75,18 @@ function AddVideoForm({ videoList, setVideos, users, connection}) {
 
       return;
     }
+    console.log(video);
+    console.log(URL.createObjectURL(video));
+    const base64Pic = await getVideoPic();
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('author', username);
+    
+    formData.append('photo', base64Pic);
+    formData.append('video', video);
 
-    const newVideo = {
-      index: videoList.length,
-      title: title,
-      author: connection.user,
-      authorDisplayName : users.find(user => user.username === connection.user).displayName,
-      timeAgo: new Date().toLocaleString(),
-      views: 0,
-      photo: URL.createObjectURL(photo),
-      path: URL.createObjectURL(video),
-      likes: 0,
-      dislikes: 0,
-      commentsNum: 0,
-      comments: []
-    };
-    // Add the new video to the list of videos in the AddVideo list
-    setVideos([...videoList, newVideo]);
+    await uploadVideo(formData);
+    
 
     // Clear the form fields
     setTitle('');

@@ -1,110 +1,242 @@
 import React, { useState, useEffect } from 'react';
-
-
-import { useParams } from 'react-router-dom';
-
+import { useParams, useNavigate } from 'react-router-dom';
 import VideoList from '../videoList/Videolist';
 import './WatchVideoScreen.css';
-function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) {
 
-  const { videoID } = useParams();
-  const [videoPath, setVideoPath] = useState(videoList[videoID].path);
- 
+function WatchVideoScreen({ users, connection, videoList, setVideos, searchQuery }) {
+  const { videoId } = useParams();
+  const [videoPath, setVideoPath] = useState('');
+  const navigate = useNavigate();
+  const [video, setVideo] = useState([]);
+  const [comments, setComments] = useState([]);
+  const token = sessionStorage.getItem('token');
+  const userId = sessionStorage.getItem('userId');
+  const username = sessionStorage.getItem('username');
+
+  const fetchVideo = async () => {
+    try {
+      console.log(videoId);
+      const response = await fetch(`http://localhost:12345/api/videos/${videoId}`, {
+        method: 'GET',
+        headers: {
+          "authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        }
+      });
+      const videoFromServer = await response.json();
+      console.log(1);
+      console.log(videoFromServer);
+      console.log(2);
+      setVideoPath(videoFromServer.path);
+      setVideo(videoFromServer);
+    } catch (error) {
+      // handle error
+      console.log('error fetching video');
+    }
+  };
+  const fetchComments = async () => {
+    try {
+      console.log(videoId);
+      const response = await fetch(`http://localhost:12345/api/comments/videos/${videoId}`, {
+        method: 'GET',
+        headers: {
+          "authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        }
+      });
+      const commentsFromServer = await response.json();
+      console.log(1);
+      console.log(commentsFromServer);
+      console.log(2);
+      setComments(commentsFromServer);
+
+    } catch (error) {
+      // handle error
+      console.log('error fetching comments');
+    }
+  };
+  useEffect(() => {
+    fetchVideo();
+    fetchComments();
+
+  }, [videoId]);
+
+
+
+
+
   const [shares, setShares] = useState(0);
   const [downloads, setDownloads] = useState(0);
   const [subscribers, setSubscribers] = useState(0);
-  
+
   const [commentText, setCommentText] = useState('');
   const [isLiked, setIsLiked] = useState(false);
   const [isDisliked, setIsDisliked] = useState(false);
-  
+
+
+
   useEffect(() => {
-    if (connection.isConnected && videoList[videoID].likedBy.includes(connection.user)) {
+    if (token && video.likedBy?.includes(username)) {
       setIsLiked(true);
-      
-    }else{
+
+    } else {
       setIsLiked(false);
-     
+
     }
-    if (connection.isConnected && videoList[videoID].dislikedBy.includes(connection.user)) {
+    if (token && video.dislikedBy?.includes(username)) {
       setIsDisliked(true);
-    }else{
+    } else {
       setIsDisliked(false);
     }
-  }, [connection.isConnected, videoPath, videoID, videoList[videoID].likedBy,videoList[videoID].dislikedBy,videoList]);
-  
-  useEffect(() => {
-    setVideoPath(videoList[videoID].path);
-    incrementViewCount();
-  } , [videoID]);
-  const incrementViewCount = () => {
-    const newVideos = [...videoList];
-    newVideos[videoID].views = newVideos[videoID].views + 1;
-    setVideos(newVideos);
+  }, [token, username, isLiked, isDisliked, video]);
+
+
+  const patchVideo = async (data) => {
+    try {
+      
+      const response = await fetch(`http://localhost:12345/api/videos/${videoId}`, {
+        method: 'PATCH',
+        headers: {
+          "authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+      });
+      const videoFromServer = await response.json();
+      
+      setVideo(videoFromServer);
+    } catch (error) {
+      // handle error
+      console.log('error patching video');
+    }
+  };
+  const addComment = async (data) => {
+    try {
+      console.log(comments);
+      const response = await fetch(`http://localhost:12345/api/comments/videos/${videoId}`, {
+        method: 'POST',
+        headers: {
+          "authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+      });
+      const commentFromServer = await response.json();
+      console.log(1);
+      console.log(commentFromServer);
+      console.log(2);
+      setComments([...comments, commentFromServer]);
+    } catch (error) {
+      // handle error
+      console.log('error patching comments');
+    }
+  };
+  const patchComment = async (data, id) => {
+    try {
+      console.log(comments);
+      const response = await fetch(`http://localhost:12345/api/comments/${id}/videos/${videoId}`, {
+        method: 'PATCH',
+        headers: {
+          "authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+      });
+      const commentsFromServer = await response.json();
+      console.log(1);
+      console.log(commentsFromServer);
+      console.log(2);
+      setComments(commentsFromServer);
+    } catch (error) {
+      // handle error
+      console.log('error patching comments');
+    }
+  };
+  const deleteComment = async (data) => {
+    try {
+      console.log(data);
+      const response = await fetch(`http://localhost:12345/api/comments/${data}/videos/${videoId}`, {
+        method: 'DELETE',
+        headers: {
+          "authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        }
+      });
+      const commentsFromServer = await response.json();
+      console.log(1);
+      console.log(commentsFromServer);
+      console.log(2);
+      setComments(commentsFromServer);
+    } catch (error) {
+      // handle error
+      console.log('error deleting comment');
+    }
   };
 
-  
+
   const handleLike = () => {
-    if (!connection.isConnected) {
+    if (!token) {
       alert('You need to be connected to like a video');
       return;
     }
     if (isLiked) {
       setIsLiked(false);
-      const newVideos = [...videoList];
-      newVideos[videoID].likes = newVideos[videoID].likes - 1;
-      newVideos[videoID].likedBy = newVideos[videoID].likedBy.filter(user => user != connection.user);
-      setVideos(newVideos);
+
+      video.likes = video.likes - 1;
+      video.likedBy = video.likedBy.filter(user => user !== username);
+      patchVideo(video);
 
 
       return;
     }
-    const newVideos = [...videoList];
-    newVideos[videoID].likedBy.push(connection.user);
-    newVideos[videoID].likes = newVideos[videoID].likes + 1;
-    setVideos(newVideos);
+    video.likedBy.push(username);
+    video.likes = video.likes + 1;
+
     if (isDisliked) {
       setIsDisliked(false);
-      const newVideos = [...videoList];
-      newVideos[videoID].dislikes = newVideos[videoID].dislikes - 1;
-      newVideos[videoID].dislikedBy = newVideos[videoID].dislikedBy.filter(user => user != connection.user);
-      setVideos(newVideos);
 
+      video.dislikes = video.dislikes - 1;
+      video.dislikedBy = video.dislikedBy.filter(user => user !== username);
 
-      return;
     }
+    patchVideo(video);
+
+
+    return;
   };
 
 
   const handleDislike = () => {
-    if (!connection.isConnected) {
+    if (!token) {
       alert('You need to be connected to dislike a video');
       return;
     }
     if (isDisliked) {
       setIsDisliked(false);
-      const newVideos = [...videoList];
-      newVideos[videoID].dislikes = newVideos[videoID].dislikes - 1;
-      newVideos[videoID].dislikedBy = newVideos[videoID].dislikedBy.filter(user => user != connection.user);
-      setVideos(newVideos);
+
+      video.dislikes = video.dislikes - 1;
+      video.dislikedBy = video.dislikedBy.filter(user => user !== username);
+      patchVideo(video);
 
 
       return;
     }
-    const newVideos = [...videoList];
-    newVideos[videoID].dislikedBy.push(connection.user);
-    newVideos[videoID].dislikes = newVideos[videoID].dislikes + 1;
-    setVideos(newVideos);
+
+    video.dislikedBy.push(username);
+    video.dislikes = video.dislikes + 1;
+
+
     if (isLiked) {
       setIsLiked(false);
-      const newVideos = [...videoList];
-      newVideos[videoID].likes = newVideos[videoID].likes - 1;
-      newVideos[videoID].likedBy = newVideos[videoID].likedBy.filter(user => user != connection.user);
-      setVideos(newVideos);
 
+      video.likes = video.likes - 1;
+      video.likedBy = video.likedBy.filter(user => user !== username);
 
-      return;
     }
+    patchVideo(video);
+
+
+    return;
   };
 
   const handleShare = () => {
@@ -120,43 +252,48 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
   };
 
   const handleComment = () => {
-    if (!connection.isConnected) {
+    if (!token) {
       alert('You need to be connected to comment on a video');
       setCommentText('');
       return;
     }
-    const newVideos = [...videoList];
-    if (commentText.trim() !== '' && connection.isConnected) {
-      const newComment = {
-        commentID: videoList[videoID].commentsNum,
-        author: users.find(user => user.username === connection.user).displayName,
-        text: commentText,
-        avatar: users.find(user => user.username === connection.user).profilePicture
-      };
 
-      const updatedVIdeoList = videoList.map(video => {
-        if (video.index == videoID) {
-          return {
-            ...video,
-            commentsNum: video.commentsNum + 1,
-            comments: [...video.comments, newComment]
-            
-          };
-        }
-        return video;
-      });
-      setVideos(updatedVIdeoList);
-      
-      
+    if (commentText.trim() !== '' && token) {
+      const newComment = {
+        videoId: videoId,
+        username: username,
+        text: commentText
+      };
+      addComment(newComment);
+
+
+
     }
     setCommentText('');
   };
-  const deleteComment = (index) => {
-    const newVideos = [...videoList];
-    newVideos[videoID].comments = newVideos[videoID].comments.filter((_, i) => i !== index);
-    newVideos[videoID].commentsNum = newVideos[videoID].commentsNum - 1;
-    setVideos(newVideos);
+  const handleDeleteComment = async (id) => {
+    deleteComment(id);
+
   }
+  const handleEditComment = async (id) => {
+    const newText = await prompt(`Enter new text: ${comments.find(comment => comment._id === id).text}`);
+    if (newText !== null) {
+
+      const newComment = {
+        videoId: videoId,
+        username: username,
+        text: newText
+      };
+      patchComment(newComment, id)
+
+
+
+    }
+  }
+  const directToProfile = () => {
+    navigate(`/profile/${video.author}`);
+  }
+
 
   return (
     <div className='big-container'>
@@ -166,19 +303,19 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
         </div>
         <div className="video-info">
           <div className="button-container">
-            <h1>Title: {videoList[videoID].title}</h1>
-            <h3>By: {videoList[videoID].authorDisplayName}</h3>
-            <h3>{videoList[videoID].views} views</h3>
-            <h3>Published on {videoList[videoID].timeAgo}</h3>
-            <button className={isLiked ? 'buttuonPressed' : ''} onClick={handleLike}>Like ({videoList[videoID].likes})</button>
-            <button className={isDisliked ? 'buttuonPressed' : ''} onClick={handleDislike}>Dislike ({videoList[videoID].dislikes})</button>
+            <h1>Title: {video.title}</h1>
+            <h3 id='directToProfile' onClick={directToProfile} >By: {video.authorDisplayName}</h3>
+            <h3>{video.views} views</h3>
+            <h3>Published on {video.timeAgo}</h3>
+            <button className={isLiked ? 'buttuonPressed' : ''} onClick={handleLike}>Like ({video.likedBy?.length})</button>
+            <button className={isDisliked ? 'buttuonPressed' : ''} onClick={handleDislike}>Dislike ({video.dislikedBy?.length})</button>
             <button onClick={handleShare}>Share ({shares})</button>
             <button onClick={handleDownload}>Download ({downloads})</button>
             <button onClick={handleSubscribers}>Subscribers ({subscribers})</button>
-            
+
           </div>
           <div className="comments-section">
-            <h3>{videoList[videoID].commentsNum} Comments</h3>
+            <h3>{comments?.length} Comments</h3>
             <div className="comment-input-container">
               <input
                 type="text"
@@ -188,11 +325,12 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
               />
               <button onClick={handleComment}>Comment</button>
             </div>
-            {videoList[videoID].comments.map((comment, index) => (
-              <div key={index} className="comment"> 
-                <img src={comment.avatar} alt="" />
-                <span>{comment.author}</span>: {comment.text}
-                <button className="deleteCommButton" onClick={() => deleteComment(index)} >X</button>
+            {comments?.map((comment, index) => (
+              <div key={index} className="comment">
+                <img src={comment.photo} alt="" />
+                <span>{comment.displayName}</span>: {comment.text}
+                {comment.username === username && (<button className="deleteCommButton" onClick={() => handleEditComment(comment._id)} >edit</button>)}
+                {comment.username === username && (<button className="deleteCommButton" onClick={() => handleDeleteComment(comment._id)} >X</button>)}
               </div>
             ))}
           </div>
@@ -200,7 +338,7 @@ function WatchVideoScreen({users,connection,videoList, setVideos, searchQuery}) 
       </div>
       <div className="video-list-container">
         <div className="video-list">
-          <VideoList videoList={videoList} searchQuery={searchQuery} users={users}/>
+          <VideoList videoList={videoList} searchQuery={searchQuery} users={users} />
         </div>
       </div>
     </div>

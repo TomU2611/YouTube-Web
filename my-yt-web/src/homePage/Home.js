@@ -33,7 +33,7 @@ function Home({theme,setTheme, connection, setConnection , users, darkMode, vide
             </div>
           </div>
         } />
-        <Route path="/watch/:videoID" element={
+        <Route path="/watch/:videoId" element={
           <div className='videoScreen'>
             <WatchVideoScreen className='watchVideo' users={users} connection={connection} videoList={videoList} setVideos={setVideos} searchQuery={searchQuery}/>
             
