@@ -2,16 +2,16 @@ import React from 'react';
 import './VideoItem.css';
 
 //display the video item
-function VideoItem({ title, author, authorDisplayName, views, timeAgo, photo, users}) {
+function VideoItem({ video}) {
     
     
     
     return (
         <div className="VideoItem">
-        <img src={photo} alt={title} />
-            <div>{title}</div>
-            <p>{authorDisplayName}</p>
-            <p>{views} Views - {timeAgo}</p>
+        <img src={video.photo} alt={video.title} />
+            <div>{video.title}</div>
+            <p>{video.authorDisplayName}</p>
+            <p>{video.views} Views - {video.timeAgo}</p>
         </div>
     );
 }

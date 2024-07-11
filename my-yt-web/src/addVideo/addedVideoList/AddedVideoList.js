@@ -1,26 +1,93 @@
 import AddVideoItem from './addVideoItem/AddVideoItem';
 import './AddedVideoList.css';
-
+import { useEffect, useState } from 'react';
 function AddedVideoList({ videoList, setVideos, users, connection }) {
-    const deleteVideo = (index) => {
-        //setVideosList((prevVideos) => prevVideos.filter((_, i) => i !== index));
-        const newVideos = [...videoList];
-        newVideos.splice(index, 1);
-        setVideos(newVideos);
+    const [userVideos, setUserVideos] = useState([]);
+    const token = sessionStorage.getItem('token');
+    const userId = sessionStorage.getItem('userId');
+    const username = sessionStorage.getItem('username');
+    useEffect(() => {
+        fetchVideos();
+    }, [userVideos]);
 
+    const fetchVideos = async () => {
+        try {
+
+            const response = await fetch(`http://localhost:12345/api/users/${userId}/videos`, {
+                method: 'GET',
+                headers: {
+                    "authorization": `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+
+            })
+            const videos = await response.json();
+
+            setUserVideos(videos);
+
+        } catch (error) {
+            // handle error
+            console.log('error fetching videos');
+        }
+    };
+
+    const deleteVideo = async (id) => {
+        try {
+
+            const response = await fetch(`http://localhost:12345/api/users/${userId}/videos/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    "authorization": `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+
+            })
+            const videos = await response.json();
+
+            setUserVideos(videos);
+
+        } catch (error) {
+            // handle error
+            console.log('error deleting video');
+        }
+        
+
+    };
+    const updateTitle = async (id) => {
+        const newTitle = await prompt('Enter new title:');
+        if (newTitle === null || newTitle === '') {
+            return;
+        }
+        try {
+
+            const response = await fetch(`http://localhost:12345/api/users/${userId}/videos/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    "authorization": `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title: newTitle })
+
+            });
+            fetchVideos();
+
+        } catch (error) {
+            // handle error
+            console.log('error deleting video');
+        }
     };
     return (
         <div className="AddedVideoList">
             <div className="AddedVideoListHeader">
-                        <div className="headerItem">Title</div>
-                        <div className="headerItem">Views</div>
-                        <div className="headerItem">Likes</div>
+                <div className="headerItem">Title</div>
+                <div className="headerItem">Views</div>
+                <div className="headerItem">Likes</div>
             </div>
-            { videoList.length > 0 ? (
+            {userVideos.length > 0 ? (
                 <div>
-                    {videoList.map((video, index) => (
-                        video.author == connection.user &&
-                        <AddVideoItem key={index} videoList={videoList} index={index} deleteVideo={deleteVideo} />
+                    {userVideos.map((video, index) => (
+                        video.author == username &&
+                        <AddVideoItem key={index} video={video} index={index} deleteVideo={deleteVideo} updateTitle={updateTitle} />
                     ))}
                 </div>
             ) : (

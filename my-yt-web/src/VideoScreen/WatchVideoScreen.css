@@ -5,6 +5,9 @@
   
   
 }
+#directToProfile:hover {
+  cursor: pointer;
+}
 .watch-video-container {
   max-width: 60%; /* Adjust width as needed */
   display: flex;

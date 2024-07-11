@@ -4,6 +4,11 @@ import './Dropdown.css';
 import { useNavigate } from 'react-router-dom';
 const Dropdown = ({ theme,setTheme,toggleDarkMode, connection,setConnection }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const token = sessionStorage.getItem('token');
+  const userId = sessionStorage.getItem('userId');
+  const username = sessionStorage.getItem('username');
+  const profilePicture = sessionStorage.getItem('profilePicture');
+
   const navigate = useNavigate();
   const handleRedirection = (path) => {
     navigate(path);
@@ -12,7 +17,10 @@ const Dropdown = ({ theme,setTheme,toggleDarkMode, connection,setConnection }) =
     setIsOpen(prevIsOpen => !prevIsOpen);
   };
   const handleLogout= () => {
-    setConnection({ isConnected: false, user: '' });
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('profilePicture');
     handleRedirection("/login");
   }
  
@@ -38,30 +46,38 @@ const Dropdown = ({ theme,setTheme,toggleDarkMode, connection,setConnection }) =
               <span className="w-70 m-2">Home</span>
               
             </li>
-            {!connection.isConnected && (
+            {!token && (
               <li  onClick={() => handleRedirection("/login")} className="list-group-item d-flex justify-content align-items-center">
                 <i className="bi bi-door-open"></i>
                 <span className="w-70 m-2">Sign In</span>
               </li>
             )}
-            {connection.isConnected && (
+            {token && (
               <li onClick={handleLogout} className="list-group-item d-flex justify-content align-items-center">
                 <i className="bi bi-door-closed"></i>
                 <span className="w-70 m-2">Sign Out</span>
               </li>
             )}
-            {!connection.isConnected && (
+            {!token && (
               <li onClick={() => handleRedirection("/register")} className="list-group-item d-flex justify-content align-items-center">
                 <i className="bi bi-r-circle"></i>
                 <span className="w-70 m-2">Register</span>
               </li>
             )}
            
-           {connection.isConnected && (
+           {token && (
             <li onClick={() => handleRedirection("/add")} className="list-group-item d-flex justify-content align-items-center">
               
               <i class="bi bi-plus-circle"></i>
               <span className="w-70 m-2">Add Video</span>
+              
+            </li>
+           )}
+           {token && (
+            <li onClick={() => handleRedirection(`/profile/${username}`)} className="list-group-item d-flex justify-content align-items-center">
+              
+              <i class="bi bi-person"></i>
+              <span className="w-70 m-2">Profile</span>
               
             </li>
            )}

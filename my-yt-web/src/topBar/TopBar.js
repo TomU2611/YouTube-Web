@@ -9,7 +9,12 @@ import { useNavigate } from 'react-router-dom';
 //import searchIcon from './logo.png';
 
 function TopBar({theme, setTheme,connection, setConnection , users, setSearchQuery} ) {
-  const [profilePicture, setProfilePicture] = useState(null);
+  
+  const token = sessionStorage.getItem('token');
+  const userId = sessionStorage.getItem('userId');
+  const username = sessionStorage.getItem('username');
+  const profilePicture = sessionStorage.getItem('profilePicture');
+
   const searchBox = useRef(null);
   const navigate = useNavigate();
   const search = function(){
@@ -17,16 +22,12 @@ function TopBar({theme, setTheme,connection, setConnection , users, setSearchQue
     console.log(searchBox.current.value);
   }
   
-  useEffect(() => {
-    if (connection.isConnected) {
-      const user = users.find(user => user.username === connection.user);
-      if (user && user.profilePicture) {
-        setProfilePicture(user.profilePicture);
-      }
-    }
-  }, [connection, users]);
+  
   function handleLogout() {
-    setConnection({ isConnected: false, user: '' });
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('profilePicture');
     navigate("/login");
   }
   
@@ -35,7 +36,7 @@ function TopBar({theme, setTheme,connection, setConnection , users, setSearchQue
       <div className="topbar">
 
         <div className="topbar-right">
-          {!connection.isConnected && (
+          {!token && (
             <Link to="/login">
               <button type="button" className="buttonSign">
                 <i className="bi bi-person icon"></i>
@@ -43,7 +44,7 @@ function TopBar({theme, setTheme,connection, setConnection , users, setSearchQue
               </button>
             </Link>
           )}
-          {connection.isConnected &&(
+          {token &&(
             <div>
               <div onClick={handleLogout} className="profile-picture1">
                 <h4>sign out</h4>
