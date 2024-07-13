@@ -4,12 +4,12 @@ import './LoginPage.css';
 import { Link, useNavigate } from 'react-router-dom';
 
 
-function LoginPage({users, setConnection}){
+function LoginPage({ users, setConnection }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
-    
+
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
     };
@@ -28,20 +28,23 @@ function LoginPage({users, setConnection}){
                 body: JSON.stringify({ username, password }),
             });
 
-            if (!response.ok) {
-                const errorMessage = await response.text();
-                throw new Error(errorMessage);
-            }
+
 
             const data = await response.json();
             const statusNum = response.status;
+            if (statusNum === 404) {
+
+
+                setMessage('Incorrect username or password!');
+                return;
+            }
             const profilePicture = data.profilePicture;
             const token = data.token;
             const userId = data.userId;
-            
+
             //const token = jwt.sign({ id: userId }, "key");
             //res.status(200).json({ userId, token });
-            console.log(token);
+            
             // Store token in localStorage
             sessionStorage.setItem('profilePicture', profilePicture);
             sessionStorage.setItem('token', token);
@@ -54,7 +57,7 @@ function LoginPage({users, setConnection}){
             */
 
             // Update state or setConnection to indicate user is logged in
-            setConnection({ isConnected: true, user: username, id : userId});
+            setConnection({ isConnected: true, user: username, id: userId });
 
             // Redirect to home page
             navigate('/');
@@ -62,18 +65,18 @@ function LoginPage({users, setConnection}){
         } catch (error) {
             console.error(error);
             console.log('error fetching token');
-            
+            setMessage('Incorrect username or password!');
         }
     }
-    
 
-   
+
+
 
     return (
         <div className="login-container">
             <Link to="/"><div className="youtube-icon"></div></Link>
             <form className="login-form" onSubmit={handleSubmit}>
-                
+
                 <h2>Sign In</h2>
                 <div className="form-group">
                     <span>Username</span>
@@ -90,12 +93,12 @@ function LoginPage({users, setConnection}){
                     </div>
                 </div>
                 {message && (
-                <div className={message === 'Login successful!' ? 'valid-input-message' : 'invalid-input-message'}>
-                    {message}
-                </div>
-                 )}
+                    <div className={'invalid-input-message'}>
+                        {message}
+                    </div>
+                )}
             </form>
-            
+
         </div>
     );
 }
