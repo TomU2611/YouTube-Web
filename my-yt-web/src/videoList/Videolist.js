@@ -3,7 +3,7 @@ import './VideoList.css';
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-function VideoList({  searchQuery, users }) {
+function VideoList({  searchQuery }) {
     const [videoList1, setVideos1] = useState([]);
 
     useEffect(() => {
@@ -45,7 +45,7 @@ function VideoList({  searchQuery, users }) {
                 
                
                 <Link key={key} className="vid" to={`/watch/${video._id}`} ><VideoItem  video={video}></VideoItem></Link>
-
+               
             )}
         </div>
 

@@ -32,9 +32,7 @@ function RegisterPage({ users, setUsers, setConnection }) {
         setProfilePicture(e.target.files[0]);
     }
     const getProfilePic = async () => {
-        if (!profilePicture) {
-            return await convertToBase64('/photos/guest.png');
-        }
+        
         return await convertToBase64(profilePicture);
     }
     const convertToBase64 = (file) => {
@@ -51,17 +49,20 @@ function RegisterPage({ users, setUsers, setConnection }) {
 
     const validateInputs = async () => {
         // Reset validation state
-
+        if (!profilePicture) {
+            setMessage('Picture needed!');
+            return;
+        }
 
         // Check if all fields are filled
-        if (!username || !password || !displayName || !rePassword) {
+        if (!username || !password || !displayName || !rePassword ) {
             setMessage('Invalid input!');
             return;
         }
 
         // Check if passwords match
         if (password !== rePassword) {
-            setMessage('Invalid input!');
+            setMessage('Incorrect RePassword!');
             return;
         }
 
@@ -69,7 +70,7 @@ function RegisterPage({ users, setUsers, setConnection }) {
         // Check password complexity
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         if (!passwordRegex.test(password)) {
-            setMessage('Invalid input!');
+            setMessage('Password should be of length 8 and include numbers!');
             return;
         }
         const base64Pic = await getProfilePic();
@@ -83,12 +84,64 @@ function RegisterPage({ users, setUsers, setConnection }) {
 
 
 
-        const status = registerServer(newUser);
-
-
-        setMessage('Account Created');
+        const status = await registerServer(newUser);
+        console.log(status)
+        if (status === 404) {
+            setMessage('Username already exists!');
+            return;
+        }
         
-        navigate('/login');
+        try {
+            const response = await fetch('http://localhost:12345/api/tokens', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+
+
+            const data = await response.json();
+            const statusNum = response.status;
+            if (statusNum === 404) {
+
+
+                setMessage('Incorrect username or password!');
+                return;
+            }
+            const profilePicture = data.profilePicture;
+            const token = data.token;
+            const userId = data.userId;
+
+            //const token = jwt.sign({ id: userId }, "key");
+            //res.status(200).json({ userId, token });
+            
+            // Store token in localStorage
+            sessionStorage.setItem('profilePicture', profilePicture);
+            sessionStorage.setItem('token', token);
+            sessionStorage.setItem('userId', userId);
+            sessionStorage.setItem('username', username);
+            /*
+            // Decode token to get user info if needed
+            const decodedToken = jwt_decode(token);
+            const { id: userId } = decodedToken;
+            */
+
+            // Update state or setConnection to indicate user is logged in
+            setConnection({ isConnected: true, user: username, id: userId });
+
+            // Redirect to home page
+            navigate('/');
+
+        } catch (error) {
+            console.error(error);
+            console.log('error fetching token');
+            setMessage('Incorrect username or password!');
+        }
+        
+        
+        
     };
 
     const registerServer = async (data) => {
@@ -101,10 +154,11 @@ function RegisterPage({ users, setUsers, setConnection }) {
                 },
                 body: JSON.stringify(data),
             });
+            console.log(response.status)
             return response.status;
         } catch (error) {
             console.error(error);
-
+            
         }
     };
 
@@ -147,7 +201,7 @@ function RegisterPage({ users, setUsers, setConnection }) {
                     <button type="button" onClick={handleSubmit}>Create Account</button>
                 </div>
                 {message && (
-                    <div className={message === 'Invalid input!' ? 'invalid-input-message' : 'valid-input-message'}>
+                    <div className={'invalid-input-message'}>
                         {message}
                     </div>
                 )}

@@ -154,7 +154,7 @@ function WatchVideoScreen({ users, connection, videoList, setVideos, searchQuery
   };
   const deleteComment = async (data) => {
     try {
-      console.log(data);
+      
       const response = await fetch(`http://localhost:12345/api/comments/${data}/videos/${videoId}`, {
         method: 'DELETE',
         headers: {
@@ -163,9 +163,7 @@ function WatchVideoScreen({ users, connection, videoList, setVideos, searchQuery
         }
       });
       const commentsFromServer = await response.json();
-      console.log(1);
-      console.log(commentsFromServer);
-      console.log(2);
+     
       setComments(commentsFromServer);
     } catch (error) {
       // handle error
@@ -182,7 +180,7 @@ function WatchVideoScreen({ users, connection, videoList, setVideos, searchQuery
     if (isLiked) {
       setIsLiked(false);
 
-      video.likes = video.likes - 1;
+      
       video.likedBy = video.likedBy.filter(user => user !== username);
       patchVideo(video);
 
@@ -190,12 +188,12 @@ function WatchVideoScreen({ users, connection, videoList, setVideos, searchQuery
       return;
     }
     video.likedBy.push(username);
-    video.likes = video.likes + 1;
+    
 
     if (isDisliked) {
       setIsDisliked(false);
 
-      video.dislikes = video.dislikes - 1;
+      
       video.dislikedBy = video.dislikedBy.filter(user => user !== username);
 
     }
@@ -214,7 +212,7 @@ function WatchVideoScreen({ users, connection, videoList, setVideos, searchQuery
     if (isDisliked) {
       setIsDisliked(false);
 
-      video.dislikes = video.dislikes - 1;
+      
       video.dislikedBy = video.dislikedBy.filter(user => user !== username);
       patchVideo(video);
 
@@ -223,13 +221,13 @@ function WatchVideoScreen({ users, connection, videoList, setVideos, searchQuery
     }
 
     video.dislikedBy.push(username);
-    video.dislikes = video.dislikes + 1;
+    
 
 
     if (isLiked) {
       setIsLiked(false);
 
-      video.likes = video.likes - 1;
+      
       video.likedBy = video.likedBy.filter(user => user !== username);
 
     }
@@ -338,7 +336,7 @@ function WatchVideoScreen({ users, connection, videoList, setVideos, searchQuery
       </div>
       <div className="video-list-container">
         <div className="video-list">
-          <VideoList videoList={videoList} searchQuery={searchQuery} users={users} />
+          <VideoList  searchQuery={searchQuery}  />
         </div>
       </div>
     </div>
